@@ -1,9 +1,11 @@
 import { ChartMode, TradingTerminalWidgetOptions } from "../type";
 
-const getDisabledFeatures = (mode: ChartMode) => {
+const getDisabledFeatures = (
+  mode: ChartMode,
+  showVolumeInSamePane: boolean = true,
+) => {
   let disabledFeatures = [
     "header_symbol_search",
-    "volume_force_overlay",
     "trading_account_manager",
     "drawing_templates",
     "open_account_manager",
@@ -20,6 +22,11 @@ const getDisabledFeatures = (mode: ChartMode) => {
     "header_fullscreen_button",
     "header_widget",
   ];
+
+  // Only disable volume_force_overlay if volume should be in a separate pane
+  if (!showVolumeInSamePane) {
+    disabledFeatures.push("volume_force_overlay");
+  }
 
   if (mode === ChartMode.MOBILE) {
     disabledFeatures = [
@@ -56,10 +63,11 @@ const getDisabledFeatures = (mode: ChartMode) => {
 export default function getOptions(
   options: any,
   mode: any,
+  showVolumeInSamePane: boolean = true,
 ): TradingTerminalWidgetOptions {
   return {
     ...options,
-    disabled_features: getDisabledFeatures(mode),
+    disabled_features: getDisabledFeatures(mode, showVolumeInSamePane),
     enabled_features: [
       "hide_left_toolbar_by_default",
       "order_panel_close_button",

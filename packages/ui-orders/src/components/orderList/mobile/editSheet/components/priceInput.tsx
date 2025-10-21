@@ -33,6 +33,7 @@ export const PriceInput = memo((props: PriceInputProps) => {
       align="right"
       fullWidth
       autoComplete="off"
+      inputMode="decimal"
       formatters={[
         inputFormatter.numberFormatter,
         inputFormatter.dpFormatter(quote_dp),

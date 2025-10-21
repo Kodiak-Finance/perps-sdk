@@ -25,6 +25,7 @@ export const PriceInput = () => {
         value={
           type === OrderType.LIMIT ? price : t("orderEntry.orderType.market")
         }
+        inputMode="decimal"
         onValueChange={(e) => updatePriceChange(e)}
         formatters={[
           inputFormatter.numberFormatter,

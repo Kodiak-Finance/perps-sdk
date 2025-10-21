@@ -21,6 +21,11 @@ export interface TradingviewWidgetPropsInterface {
   theme?: string;
   loadingScreen?: LoadingScreenOptions;
   /**
+   * Show volume in the same pane as the price chart (default: true).
+   * If false, volume will be displayed in a separate pane below the chart.
+   */
+  showVolumeInSamePane?: boolean;
+  /**
    * The locale of the tradingview.
    * If locale does not match in TradingviewLocaleCode, it will default to "en".
    * If locale is a function, you can use the current locale to return the TradingviewLocaleCode.

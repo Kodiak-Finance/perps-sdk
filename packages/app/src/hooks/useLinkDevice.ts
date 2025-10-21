@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import {
   parseJSON,
   useAccount,
@@ -7,7 +7,6 @@ import {
   useWalletConnector,
 } from "@kodiak-finance/orderly-hooks";
 import { ChainNamespace } from "@kodiak-finance/orderly-types";
-import { useScreen } from "@kodiak-finance/orderly-ui";
 
 type DecodedData = {
   /** secret key */
@@ -34,7 +33,6 @@ export function useLinkDevice() {
   );
 
   const { account } = useAccount();
-  const { isMobile } = useScreen();
   const configStore = useConfig();
 
   const onDisconnect = async (label: string) => {
@@ -78,15 +76,19 @@ export function useLinkDevice() {
   };
 
   useEffect(() => {
-    if (isMobile && !connectedChain) {
+    const linkData = getLinkDeviceData();
+    // If link parameter exists, link device regardless of device type
+    // This allows iPad, phones, and other devices to scan QR code and link
+    if (linkData && !connectedChain) {
       linkDevice();
     }
-  }, [account, connectedChain, isMobile]);
+  }, [account, connectedChain]);
 
   const autoLinkDevice = async () => {
     // this can't use the value returned by useLocalStorage here, because it will trigger extra state change
     const { chainId, chainNamespace } = getLinkDeviceStorage() || {};
-    if (isMobile && !connectedChain && chainId && chainNamespace) {
+    // Auto-link on any device (phone, tablet, etc.) if device was previously linked
+    if (!connectedChain && chainId && chainNamespace) {
       const address = account.keyStore.getAddress();
       const orderlyKey = account.keyStore.getOrderlyKey();
       const accountId = account.keyStore.getAccountId(address!);
@@ -104,7 +106,7 @@ export function useLinkDevice() {
   // persist status when refresh page
   useEffect(() => {
     autoLinkDevice();
-  }, [account, isMobile, connectedChain]);
+  }, [account, connectedChain]);
 
   return { linkDevice };
 }

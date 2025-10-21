@@ -61,6 +61,7 @@ export function useTradingviewScript(props: TradingviewWidgetPropsInterface) {
     loadingScreen: customerLoadingScreen,
     mode,
     colorConfig: customerColorConfig,
+    showVolumeInSamePane,
     locale = defaultLocale,
     classNames,
   } = props;
@@ -311,7 +312,7 @@ export function useTradingviewScript(props: TradingviewWidgetPropsInterface) {
         interval: interval ?? "1",
         theme: theme ?? "dark",
         loadingScreen: loadingScreen ?? {},
-
+        showVolumeInSamePane,
         overrides: overrides,
         studiesOverrides,
         datafeed: new Datafeed(apiBaseUrl!, ws),
@@ -353,6 +354,7 @@ export function useTradingviewScript(props: TradingviewWidgetPropsInterface) {
     colorConfig,
     locale,
     localeCode,
+    showVolumeInSamePane,
   ]);
 
   useEffect(() => {

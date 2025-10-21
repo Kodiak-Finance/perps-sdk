@@ -20,8 +20,8 @@ export const defaultColorConfig: ColorConfigInterface = {
   textColor,
   qtyTextColor,
   font,
-  volumeUpColor: "#0C3E3A",
-  volumeDownColor: "#5A1E36",
+  volumeUpColor: "#00E5A0",
+  volumeDownColor: "#FF6B94",
   closeIcon: "rgba(255, 255, 255, 0.8)",
 };
 
@@ -50,6 +50,7 @@ export const getOveriides = (
     "scalesProperties.textColor": "#97969B",
     "paneProperties.legendProperties.showSeriesTitle": isMobile ? false : true,
     "mainSeriesProperties.statusViewStyle.symbolTextSource": "ticker",
+    "mainSeriesProperties.statusViewStyle.showExchange": false,
   };
   const studiesOverrides = {
     "volume.volume.color.0": colorConfig.volumeDownColor,

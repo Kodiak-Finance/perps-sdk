@@ -62,6 +62,7 @@ export interface WidgetOptions {
   customFontFamily: TradingTerminalWidgetOptions["custom_font_family"];
   datafeed: AbstractDatafeed;
   positionControlCallback: (...args: any[]) => void;
+  showVolumeInSamePane?: boolean;
   getBroker?(
     instance: IChartingLibraryWidget,
     host: IBrokerConnectionAdapterHost,
@@ -284,7 +285,7 @@ export class Widget {
     this._adapterSetting = adapterSetting;
     this._savedData = savedData;
     this._instance = new TradingView.widget({
-      ...getOptions(widgetOptions, mode),
+      ...getOptions(widgetOptions, mode, options.showVolumeInSamePane ?? true),
       interval:
         adapterSetting["chart.lastUsedTimeBasedResolution"] ??
         widgetOptions.interval,
