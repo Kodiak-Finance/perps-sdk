@@ -25,7 +25,7 @@ export type CustomInputProps = {
   overrideFormatters?: InputProps["formatters"];
   classNames?: InputProps["classNames"];
   readonly?: boolean;
-  inputMode?: "decimal" | "numeric" | "amount";
+  inputMode?: "decimal" | "numeric";
 };
 
 export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(

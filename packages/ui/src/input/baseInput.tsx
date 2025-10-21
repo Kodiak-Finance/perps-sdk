@@ -22,7 +22,7 @@ export interface BaseInputProps<T = string>
   fixClassName?: string;
   helpText?: string;
   loading?: boolean;
-  inputMode?: "decimal" | "numeric" | "amount";
+  inputMode?: "decimal" | "numeric";
   containerClassName?: string;
 
   formatters?: InputFormatter[];
