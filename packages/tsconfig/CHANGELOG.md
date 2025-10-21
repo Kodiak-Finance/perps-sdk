@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.1
+
+### Patch Changes
+
+- 0ed6b06: - Leaderboard: Change PnL label to "Realized PnL" throughout
+
 ## 0.11.0
 
 ### Minor Changes

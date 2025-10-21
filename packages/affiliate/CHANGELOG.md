@@ -1,5 +1,21 @@
 # @orderly.network/affiliate
 
+## 2.8.2
+
+### Patch Changes
+
+- 0ed6b06: - Leaderboard: Change PnL label to "Realized PnL" throughout
+- Updated dependencies [0ed6b06]
+  - @kodiak-finance/orderly-react-app@2.8.2
+  - @kodiak-finance/orderly-ui@2.8.2
+  - @kodiak-finance/orderly-chart@2.8.2
+  - @kodiak-finance/orderly-hooks@2.8.2
+  - @kodiak-finance/orderly-i18n@2.8.2
+  - @kodiak-finance/orderly-types@2.8.2
+  - @kodiak-finance/orderly-ui-connector@2.8.2
+  - @kodiak-finance/orderly-ui-scaffold@2.8.2
+  - @kodiak-finance/orderly-utils@2.8.2
+
 ## 2.8.1
 
 ### Patch Changes

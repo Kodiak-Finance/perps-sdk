@@ -1,5 +1,13 @@
 # @orderly.network/utils
 
+## 2.8.2
+
+### Patch Changes
+
+- 0ed6b06: - Leaderboard: Change PnL label to "Realized PnL" throughout
+- Updated dependencies [0ed6b06]
+  - @kodiak-finance/orderly-types@2.8.2
+
 ## 2.8.1
 
 ### Patch Changes

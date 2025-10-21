@@ -1,5 +1,11 @@
 # @orderly.network/types
 
+## 2.8.2
+
+### Patch Changes
+
+- 0ed6b06: - Leaderboard: Change PnL label to "Realized PnL" throughout
+
 ## 2.8.1
 
 ### Patch Changes
