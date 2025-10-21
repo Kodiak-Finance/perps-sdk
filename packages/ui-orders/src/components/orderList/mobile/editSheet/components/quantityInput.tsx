@@ -45,6 +45,7 @@ export const QuantityInput = memo((props: QuantityInputProps) => {
       align="right"
       fullWidth
       autoComplete="off"
+      inputMode="decimal"
       formatters={[
         inputFormatter.numberFormatter,
         inputFormatter.dpFormatter(base_dp),

@@ -51,6 +51,7 @@ export const QuantityInput = (props: { value: number }) => {
       <PopoverTrigger>
         <Input
           size="sm"
+          inputMode="decimal"
           classNames={{
             root: "oui-outline-none oui-border oui-border-solid oui-border-white/[0.12] focus-within:oui-outline-primary-light",
           }}

@@ -24,6 +24,7 @@ export const PriceInput: React.FC<{
       disabled={props.disabled}
       align={"right"}
       autoComplete={"off"}
+      inputMode="decimal"
       value={props.value}
       color={props.error ? "danger" : undefined}
       classNames={{

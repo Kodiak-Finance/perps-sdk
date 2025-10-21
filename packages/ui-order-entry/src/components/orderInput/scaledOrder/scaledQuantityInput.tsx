@@ -57,6 +57,7 @@ export const ScaledQuantityInput = memo((props: ScaledQuantityInputProps) => {
         formatters={[inputFormatter.dpFormatter(base_dp)]}
         onFocus={onFocus(InputType.QUANTITY)}
         onBlur={onBlur(InputType.QUANTITY)}
+        inputMode="decimal"
       />
     );
   }
@@ -76,6 +77,7 @@ export const ScaledQuantityInput = memo((props: ScaledQuantityInputProps) => {
       formatters={[inputFormatter.dpFormatter(quote_dp)]}
       onFocus={onFocus(InputType.TOTAL)}
       onBlur={onBlur(InputType.TOTAL)}
+      inputMode="decimal"
     />
   );
 });

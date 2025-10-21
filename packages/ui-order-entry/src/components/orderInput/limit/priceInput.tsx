@@ -69,6 +69,7 @@ export const PriceInput: FC<PriceInputProps> = (props) => {
         onFocus={onFocus(InputType.PRICE)}
         onBlur={onBlur(InputType.PRICE)}
         readonly={readOnly}
+        inputMode="decimal"
         ref={priceInputRef}
         classNames={{
           root: cn(readOnly && "focus-within:oui-outline-transparent "),

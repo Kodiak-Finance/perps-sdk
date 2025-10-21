@@ -1,6 +1,11 @@
 import { forwardRef, PropsWithChildren, ReactNode } from "react";
 import { EMPTY_LIST } from "@kodiak-finance/orderly-types";
-import { cn, inputFormatter, Input, InputProps } from "@kodiak-finance/orderly-ui";
+import {
+  cn,
+  inputFormatter,
+  Input,
+  InputProps,
+} from "@kodiak-finance/orderly-ui";
 import { useOrderEntryContext } from "../orderEntryContext";
 
 export type CustomInputProps = {
@@ -20,11 +25,12 @@ export type CustomInputProps = {
   overrideFormatters?: InputProps["formatters"];
   classNames?: InputProps["classNames"];
   readonly?: boolean;
+  inputMode?: "decimal" | "numeric" | "amount";
 };
 
 export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
   (props, ref) => {
-    const { placeholder = "0" } = props;
+    const { placeholder = "0", inputMode } = props;
     const { errorMsgVisible } = useOrderEntryContext();
 
     return (
@@ -53,6 +59,7 @@ export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
         onBlur={(event) => {
           props.onBlur?.(event);
         }}
+        inputMode={inputMode}
         formatters={
           props.overrideFormatters || [
             ...(props.formatters ?? EMPTY_LIST),

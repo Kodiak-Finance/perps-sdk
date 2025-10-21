@@ -1,6 +1,6 @@
 import { useTranslation } from "@kodiak-finance/orderly-i18n";
 import { Box, cn, TabPanel, Tabs, Text } from "@kodiak-finance/orderly-ui";
-import { FavoritesIcon } from "../../icons";
+import { FavoritesIcon, NewListingsIcon } from "../../icons";
 import { MarketsTabName } from "../../type";
 import { MarketsListWidget } from "../marketsList";
 import { SearchInput } from "../searchInput";
@@ -77,8 +77,20 @@ export const MarketsSheet: React.FC<MarketsSheetProps> = (props) => {
           {renderTab(MarketsTabName.Favorites)}
         </TabPanel>
 
+        <TabPanel title={t("markets.recent")} value={MarketsTabName.Recent}>
+          {renderTab(MarketsTabName.Recent)}
+        </TabPanel>
+
         <TabPanel title={t("common.all")} value={MarketsTabName.All}>
           {renderTab(MarketsTabName.All)}
+        </TabPanel>
+
+        <TabPanel
+          title={t("markets.newListings")}
+          icon={<NewListingsIcon />}
+          value={MarketsTabName.NewListing}
+        >
+          {renderTab(MarketsTabName.NewListing)}
         </TabPanel>
       </Tabs>
     </Box>
