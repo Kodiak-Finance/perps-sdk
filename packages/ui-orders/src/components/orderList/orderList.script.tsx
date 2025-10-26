@@ -176,9 +176,9 @@ export const useOrderListScript = (props: useOrderListScriptOptions) => {
         try {
           // await cancelAll(null, { source_type: "ALL" });
           if (type === TabType.tp_sl) {
-            await cancelAllTPSLOrders();
+            await cancelAllTPSLOrders(props.symbol);
           } else {
-            await cancelAllOrders();
+            await cancelAllOrders(props.symbol);
           }
           refresh();
           return Promise.resolve(true);
@@ -194,7 +194,7 @@ export const useOrderListScript = (props: useOrderListScriptOptions) => {
         }
       },
     });
-  }, [type, t]);
+  }, [type, t, props.symbol]);
 
   const formattedData = useFormatOrderHistory(data ?? []);
 

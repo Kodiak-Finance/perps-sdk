@@ -155,7 +155,7 @@ export const useOrderStream = (
   }>(normalOrderKeyFn, {
     initialSize: 1,
     formatter: (data) => data,
-    revalidateOnFocus: false,
+    revalidateOnFocus: true,
   });
 
   // console.log("ordersResponse", ordersResponse);
@@ -165,7 +165,7 @@ export const useOrderStream = (
     meta: any;
   }>(algoOrderKeyFn, {
     formatter: (data) => data,
-    revalidateOnFocus: false,
+    revalidateOnFocus: true,
   });
 
   // console.log("algoOrdersResponse", algoOrdersResponse, algoOrdersResponse);
@@ -281,15 +281,23 @@ export const useOrderStream = (
   /**
    * cancel all orders
    */
-  const cancelAllOrders = useCallback(() => {
-    return Promise.all([
-      doCancelAllOrders(null),
-      doCancelAllAlgoOrders(null, { algo_type: AlgoOrderRootType.STOP }),
-      doCancelAllAlgoOrders(null, {
-        algo_type: AlgoOrderRootType.TRAILING_STOP,
-      }),
-    ]);
-  }, [normalOrdersResponse.data, algoOrdersResponse.data]);
+  const cancelAllOrders = useCallback(
+    (symbol?: string) => {
+      const queryParams = symbol ? { symbol } : undefined;
+      return Promise.all([
+        doCancelAllOrders(null, queryParams),
+        doCancelAllAlgoOrders(null, {
+          ...(queryParams || {}),
+          algo_type: AlgoOrderRootType.STOP,
+        }),
+        doCancelAllAlgoOrders(null, {
+          ...(queryParams || {}),
+          algo_type: AlgoOrderRootType.TRAILING_STOP,
+        }),
+      ]);
+    },
+    [normalOrdersResponse.data, algoOrdersResponse.data],
+  );
 
   const cancelPostionOrdersByTypes = useCallback(
     (symbol: string, types: AlgoOrderRootType[]) => {
@@ -301,12 +309,28 @@ export const useOrderStream = (
     [algoOrdersResponse.data],
   );
 
-  const cancelAllTPSLOrders = useCallback(() => {
-    return cancelAlgoOrdersByTypes([
-      AlgoOrderRootType.POSITIONAL_TP_SL,
-      AlgoOrderRootType.TP_SL,
-    ]);
-  }, [algoOrdersResponse.data]);
+  const cancelAllTPSLOrders = useCallback(
+    (symbol?: string) => {
+      if (!symbol) {
+        return cancelAlgoOrdersByTypes([
+          AlgoOrderRootType.POSITIONAL_TP_SL,
+          AlgoOrderRootType.TP_SL,
+        ]);
+      }
+      // When symbol is provided, cancel only TPSL orders for that symbol
+      return Promise.all([
+        doCancelAllAlgoOrders(null, {
+          symbol,
+          algo_type: AlgoOrderRootType.POSITIONAL_TP_SL,
+        }),
+        doCancelAllAlgoOrders(null, {
+          symbol,
+          algo_type: AlgoOrderRootType.TP_SL,
+        }),
+      ]);
+    },
+    [algoOrdersResponse.data],
+  );
 
   const _updateOrder = useCallback(
     (orderId: string, order: OrderEntity, type: CreateOrderType) => {
