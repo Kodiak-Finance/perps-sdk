@@ -281,23 +281,20 @@ export const useOrderStream = (
   /**
    * cancel all orders
    */
-  const cancelAllOrders = useCallback(
-    (symbol?: string) => {
-      const queryParams = symbol ? { symbol } : undefined;
-      return Promise.all([
-        doCancelAllOrders(null, queryParams),
-        doCancelAllAlgoOrders(null, {
-          ...(queryParams || {}),
-          algo_type: AlgoOrderRootType.STOP,
-        }),
-        doCancelAllAlgoOrders(null, {
-          ...(queryParams || {}),
-          algo_type: AlgoOrderRootType.TRAILING_STOP,
-        }),
-      ]);
-    },
-    [normalOrdersResponse.data, algoOrdersResponse.data],
-  );
+  const cancelAllOrders = useCallback((symbol?: string) => {
+    const queryParams = symbol ? { symbol } : undefined;
+    return Promise.all([
+      doCancelAllOrders(null, queryParams),
+      doCancelAllAlgoOrders(null, {
+        ...(queryParams || {}),
+        algo_type: AlgoOrderRootType.STOP,
+      }),
+      doCancelAllAlgoOrders(null, {
+        ...(queryParams || {}),
+        algo_type: AlgoOrderRootType.TRAILING_STOP,
+      }),
+    ]);
+  }, []);
 
   const cancelPostionOrdersByTypes = useCallback(
     (symbol: string, types: AlgoOrderRootType[]) => {
@@ -329,7 +326,7 @@ export const useOrderStream = (
         }),
       ]);
     },
-    [algoOrdersResponse.data],
+    [cancelAlgoOrdersByTypes, doCancelAllAlgoOrders],
   );
 
   const _updateOrder = useCallback(
