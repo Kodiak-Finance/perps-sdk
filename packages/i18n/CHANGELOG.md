@@ -1,5 +1,11 @@
 # @orderly.network/i18n
 
+## 2.8.3
+
+### Patch Changes
+
+- b60159d: Add symbol-scoped order cancellation and improve data freshness
+
 ## 2.8.2
 
 ### Patch Changes

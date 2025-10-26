@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.2
+
+### Patch Changes
+
+- b60159d: Add symbol-scoped order cancellation and improve data freshness
+
 ## 0.11.1
 
 ### Patch Changes
