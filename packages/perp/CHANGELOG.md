@@ -1,5 +1,14 @@
 # @orderly.network/futures
 
+## 4.8.3
+
+### Patch Changes
+
+- b60159d: Add symbol-scoped order cancellation and improve data freshness
+- Updated dependencies [b60159d]
+  - @kodiak-finance/orderly-types@2.8.3
+  - @kodiak-finance/orderly-utils@2.8.3
+
 ## 4.8.2
 
 ### Patch Changes

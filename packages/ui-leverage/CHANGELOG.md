@@ -1,5 +1,18 @@
 # @orderly.network/ui-leverage
 
+## 2.8.3
+
+### Patch Changes
+
+- b60159d: Add symbol-scoped order cancellation and improve data freshness
+- Updated dependencies [b60159d]
+  - @kodiak-finance/orderly-hooks@2.8.3
+  - @kodiak-finance/orderly-ui@2.8.3
+  - @kodiak-finance/orderly-i18n@2.8.3
+  - @kodiak-finance/orderly-perp@4.8.3
+  - @kodiak-finance/orderly-types@2.8.3
+  - @kodiak-finance/orderly-utils@2.8.3
+
 ## 2.8.2
 
 ### Patch Changes
