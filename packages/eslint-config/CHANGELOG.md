@@ -1,5 +1,11 @@
 # @orderly.network/eslint-config
 
+## 2.8.4
+
+### Patch Changes
+
+- 86073bd: Enhanced mobile input experience with optimized keyboards, fixed Mac trackpad scrolling in dropdowns, and implemented changeset notification system.
+
 ## 2.8.3
 
 ### Patch Changes

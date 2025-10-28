@@ -1,5 +1,15 @@
 # @orderly.network/chart
 
+## 2.8.4
+
+### Patch Changes
+
+- 86073bd: Enhanced mobile input experience with optimized keyboards, fixed Mac trackpad scrolling in dropdowns, and implemented changeset notification system.
+- Updated dependencies [86073bd]
+  - @kodiak-finance/orderly-ui@2.8.4
+  - @kodiak-finance/orderly-i18n@2.8.4
+  - @kodiak-finance/orderly-utils@2.8.4
+
 ## 2.8.3
 
 ### Patch Changes

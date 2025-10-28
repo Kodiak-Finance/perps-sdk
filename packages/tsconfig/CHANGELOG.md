@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.3
+
+### Patch Changes
+
+- 86073bd: Enhanced mobile input experience with optimized keyboards, fixed Mac trackpad scrolling in dropdowns, and implemented changeset notification system.
+
 ## 0.11.2
 
 ### Patch Changes
