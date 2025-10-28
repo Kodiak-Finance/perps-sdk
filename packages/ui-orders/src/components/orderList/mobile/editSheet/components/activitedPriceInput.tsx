@@ -34,6 +34,7 @@ export const ActivitedPriceInput = memo((props: ActivitedPriceInputProps) => {
       align="right"
       fullWidth
       autoComplete="off"
+      inputMode="decimal"
       formatters={[
         inputFormatter.numberFormatter,
         inputFormatter.dpFormatter(quote_dp),

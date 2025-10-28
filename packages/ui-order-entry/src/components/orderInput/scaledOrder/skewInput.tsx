@@ -26,6 +26,7 @@ export const SkewInput = memo((props: SkewInputProps) => {
       }}
       onFocus={onFocus(InputType.SKEW)}
       onBlur={onBlur(InputType.SKEW)}
+      inputMode="decimal"
       overrideFormatters={[
         inputFormatter.rangeFormatter({ min: 0, max: 100, dp: 2 }),
         inputFormatter.dpFormatter(2),

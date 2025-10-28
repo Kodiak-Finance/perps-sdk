@@ -70,6 +70,7 @@ export const DesktopClosePosition: FC<ClosePositionScriptReturn> = (props) => {
         size="md"
         fullWidth
         autoComplete="off"
+        inputMode="decimal"
         formatters={[
           inputFormatter.numberFormatter,
           inputFormatter.dpFormatter(base_dp),
@@ -142,6 +143,7 @@ export const DesktopClosePosition: FC<ClosePositionScriptReturn> = (props) => {
       size="md"
       fullWidth
       autoComplete="off"
+      inputMode="decimal"
       formatters={[
         inputFormatter.numberFormatter,
         inputFormatter.dpFormatter(quote_dp),

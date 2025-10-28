@@ -9,7 +9,11 @@ import React, {
 import { OrderValidationResult } from "@kodiak-finance/orderly-hooks";
 import { useTranslation } from "@kodiak-finance/orderly-i18n";
 import { useOrderEntryFormErrorMsg } from "@kodiak-finance/orderly-react-app";
-import { OrderlyOrder, OrderType, PositionType } from "@kodiak-finance/orderly-types";
+import {
+  OrderlyOrder,
+  OrderType,
+  PositionType,
+} from "@kodiak-finance/orderly-types";
 import {
   cn,
   Flex,
@@ -320,6 +324,7 @@ const TPSLTriggerPriceInput = (props: {
       }}
       color={props.error ? "danger" : undefined}
       autoComplete={"off"}
+      inputMode="decimal"
       value={innerValue}
       classNames={{
         additional: "oui-text-base-contrast-54",

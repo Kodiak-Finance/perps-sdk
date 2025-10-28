@@ -37,6 +37,7 @@ export const ActivePriceInput = memo<ActivePriceInputProps>((props) => {
         formatters={[inputFormatter.dpFormatter(symbolInfo.quote_dp)]}
         onFocus={onFocus(InputType.ACTIVATED_PRICE)}
         onBlur={onBlur(InputType.ACTIVATED_PRICE)}
+        inputMode="decimal"
       />
     </div>
   );

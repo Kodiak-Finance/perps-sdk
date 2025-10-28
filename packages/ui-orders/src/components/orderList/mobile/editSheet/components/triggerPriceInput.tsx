@@ -32,6 +32,7 @@ export const TriggerPriceInput = memo((props: TriggerPriceInputProps) => {
       align="right"
       fullWidth
       autoComplete="off"
+      inputMode="decimal"
       formatters={[
         inputFormatter.numberFormatter,
         inputFormatter.dpFormatter(quote_dp),

@@ -32,6 +32,7 @@ export const TotalOrdersInput = memo((props: TotalOrdersInputProps) => {
       ]}
       onFocus={onFocus(InputType.TOTAL_ORDERS)}
       onBlur={onBlur(InputType.TOTAL_ORDERS)}
+      inputMode="numeric"
     />
   );
 });

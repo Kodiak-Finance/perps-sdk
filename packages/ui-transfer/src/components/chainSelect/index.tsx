@@ -141,8 +141,8 @@ export const ChainSelect: React.FC<ChainSelectProps> = (props) => {
             "oui-rounded-md oui-select-none",
           )}
         >
-          <ScrollArea>
-            <div className="oui-max-h-[254px]">{content}</div>
+          <ScrollArea className="oui-h-[254px]">
+            <div>{content}</div>
           </ScrollArea>
         </DropdownMenuContent>
       </DropdownMenuPortal>

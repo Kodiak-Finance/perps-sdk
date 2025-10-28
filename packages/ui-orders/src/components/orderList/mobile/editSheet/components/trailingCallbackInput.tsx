@@ -49,6 +49,7 @@ export const TrailingCallbackInput = memo(
         align="right"
         fullWidth
         autoComplete="off"
+        inputMode="decimal"
         formatters={
           isCallbackValue
             ? [

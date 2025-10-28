@@ -8,3 +8,13 @@ export { useDataTap } from "./hooks/useDataTap";
 export { type AppLogos } from "./types";
 export { type AppStateProviderProps } from "./provider/appStateProvider";
 export { useOrderEntryFormErrorMsg } from "./common/useOrderEntryFormErrorMsg";
+
+// Changesets - what's new in each version
+export {
+  CHANGESETS,
+  SDK_VERSION,
+  getChangesetForVersion,
+  getLatestChangeset,
+  type ChangesetEntry,
+  type Changesets,
+} from "./constants/changesets";

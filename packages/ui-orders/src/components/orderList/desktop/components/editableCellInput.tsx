@@ -69,6 +69,7 @@ export const EditableCellInput: FC<EditableCellInputProps> = (props) => {
       onFocus={props.onFocus}
       onBlur={props.onBlur}
       onKeyDown={props.handleKeyDown || handleKeyDown}
+      inputMode="decimal"
       formatters={
         props.overrideFormatters || [
           ...(props.formatters ?? EMPTY_LIST),

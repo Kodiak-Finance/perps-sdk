@@ -32,6 +32,7 @@ export const ScaledPriceInput = memo((props: ScaledPriceInputProps) => {
         formatters={[inputFormatter.dpFormatter(quote_dp)]}
         onFocus={onFocus(InputType.START_PRICE)}
         onBlur={onBlur(InputType.START_PRICE)}
+        inputMode="decimal"
         classNames={{
           root: "oui-rounded-t-xl",
         }}
@@ -48,6 +49,7 @@ export const ScaledPriceInput = memo((props: ScaledPriceInputProps) => {
         formatters={[inputFormatter.dpFormatter(quote_dp)]}
         onFocus={onFocus(InputType.END_PRICE)}
         onBlur={onBlur(InputType.END_PRICE)}
+        inputMode="decimal"
       />
     </>
   );
