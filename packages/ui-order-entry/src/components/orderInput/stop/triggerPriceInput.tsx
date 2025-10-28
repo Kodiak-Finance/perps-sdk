@@ -37,6 +37,7 @@ export const TriggerPriceInput: FC<TriggerPriceInputProps> = memo((props) => {
           formatters={[inputFormatter.dpFormatter(symbolInfo.quote_dp)]}
           onFocus={onFocus(InputType.TRIGGER_PRICE)}
           onBlur={onBlur(InputType.TRIGGER_PRICE)}
+          inputMode="decimal"
         />
       </div>
     </div>

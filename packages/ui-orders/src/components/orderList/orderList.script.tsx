@@ -155,26 +155,40 @@ export const useOrderListScript = (props: useOrderListScriptOptions) => {
   }, [pageSize, typePageSize]);
 
   const onCancelAll = useCallback(() => {
-    const title =
-      props.type === TabType.pending
-        ? t("orders.pending.cancelAll")
-        : props.type === TabType.tp_sl
-          ? t("orders.tpsl.cancelAll")
+    const isPending = props.type === TabType.pending;
+    const isTPSL = props.type === TabType.tp_sl;
+
+    const title = isPending
+      ? t("orders.pending.cancelAll")
+      : isTPSL
+        ? t("orders.tpsl.cancelAll")
+        : "";
+
+    const getContent = (): React.ReactNode => {
+      const baseMessage = isPending
+        ? t("orders.pending.cancelAll.description")
+        : isTPSL
+          ? t("orders.tpsl.cancelAll.description")
           : "";
 
-    const content = TabType.pending
-      ? t("orders.pending.cancelAll.description")
-      : props.type === TabType.tp_sl
-        ? t("orders.tpsl.cancelAll.description")
-        : "";
+      if (!props.symbol) {
+        return <Text size="sm">{baseMessage}</Text>;
+      }
+
+      const messageWithSymbol = baseMessage.replace(
+        "?",
+        ` in ${props.symbol}?`,
+      );
+      return <Text size="sm">{messageWithSymbol}</Text>;
+    };
 
     modal.confirm({
       title: title,
-      content: <Text size="sm">{content}</Text>,
+      content: getContent(),
       onCancel: async () => {},
       onOk: async () => {
         try {
-          // await cancelAll(null, { source_type: "ALL" });
+          // await cancelAll(null, { source_type: "ALL" });r
           if (type === TabType.tp_sl) {
             await cancelAllTPSLOrders(props.symbol);
           } else {

@@ -68,6 +68,7 @@ export const PNLInput = (props: PNLInputProps) => {
       }}
       data-testid={props.testIds?.input}
       autoComplete={"off"}
+      inputMode="decimal"
       onValueChange={onValueChange}
       formatters={[
         props.formatter({ dp: quote_dp, mode, type }),

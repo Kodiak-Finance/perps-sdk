@@ -125,8 +125,8 @@ export const AccountSelect: React.FC<AccountSelectProps> = (props) => {
             "oui-select-none oui-rounded-md",
           )}
         >
-          <ScrollArea>
-            <div className="oui-max-h-[254px]">{content} </div>
+          <ScrollArea className="oui-h-[254px]">
+            <div>{content} </div>
           </ScrollArea>
         </DropdownMenuContent>
       </DropdownMenuPortal>

@@ -114,6 +114,7 @@ export const TrailingCallbackInput: FC<TrailingCallbackInputProps> = memo(
               onBlur(InputType.CALLBACK_RATE)(e);
               // closeTooltip();
             }}
+            inputMode="decimal"
             classNames={{
               root: "oui-h-[68px]",
               input: "oui-mb-5",
@@ -144,6 +145,7 @@ export const TrailingCallbackInput: FC<TrailingCallbackInputProps> = memo(
         formatters={[inputFormatter.dpFormatter(quote_dp)]}
         onFocus={onFocus(InputType.CALLBACK_VALUE)}
         onBlur={onBlur(InputType.CALLBACK_VALUE)}
+        inputMode="decimal"
         classNames={{
           input: "!oui-mb-[6px]",
           prefix: "!oui-top-1",

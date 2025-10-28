@@ -76,6 +76,7 @@ export const TPSLQuantity = memo<TPSLQuantityProps>((props) => {
             align="right"
             value={props.quantity}
             autoComplete="off"
+            inputMode="decimal"
             classNames={{
               prefix: "oui-text-base-contrast-54",
               root: cn(
