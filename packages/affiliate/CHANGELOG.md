@@ -1,5 +1,21 @@
 # @orderly.network/affiliate
 
+## 2.8.4
+
+### Patch Changes
+
+- 86073bd: Enhanced mobile input experience with optimized keyboards, fixed Mac trackpad scrolling in dropdowns, and implemented changeset notification system.
+- Updated dependencies [86073bd]
+  - @kodiak-finance/orderly-hooks@2.8.4
+  - @kodiak-finance/orderly-react-app@2.8.4
+  - @kodiak-finance/orderly-ui@2.8.4
+  - @kodiak-finance/orderly-chart@2.8.4
+  - @kodiak-finance/orderly-i18n@2.8.4
+  - @kodiak-finance/orderly-types@2.8.4
+  - @kodiak-finance/orderly-ui-connector@2.8.4
+  - @kodiak-finance/orderly-ui-scaffold@2.8.4
+  - @kodiak-finance/orderly-utils@2.8.4
+
 ## 2.8.3
 
 ### Patch Changes

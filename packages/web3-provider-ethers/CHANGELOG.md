@@ -1,5 +1,14 @@
 # @orderly.network/web3-provider-ethers
 
+## 2.8.4
+
+### Patch Changes
+
+- 86073bd: Enhanced mobile input experience with optimized keyboards, fixed Mac trackpad scrolling in dropdowns, and implemented changeset notification system.
+- Updated dependencies [86073bd]
+  - @kodiak-finance/orderly-default-evm-adapter@2.8.4
+  - @kodiak-finance/orderly-types@2.8.4
+
 ## 2.8.3
 
 ### Patch Changes
