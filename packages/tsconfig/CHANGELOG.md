@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.4
+
+### Patch Changes
+
+- 3f0c08b: feat: Trading leaderboard points integration and SDK version display
+
 ## 0.11.3
 
 ### Patch Changes

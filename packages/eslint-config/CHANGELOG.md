@@ -1,5 +1,11 @@
 # @orderly.network/eslint-config
 
+## 2.8.5
+
+### Patch Changes
+
+- 3f0c08b: feat: Trading leaderboard points integration and SDK version display
+
 ## 2.8.4
 
 ### Patch Changes

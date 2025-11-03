@@ -1,5 +1,14 @@
 # @orderly.network/default-evm-adapter
 
+## 2.8.5
+
+### Patch Changes
+
+- 3f0c08b: feat: Trading leaderboard points integration and SDK version display
+- Updated dependencies [3f0c08b]
+  - @kodiak-finance/orderly-core@2.8.5
+  - @kodiak-finance/orderly-types@2.8.5
+
 ## 2.8.4
 
 ### Patch Changes

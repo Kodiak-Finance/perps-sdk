@@ -1,5 +1,14 @@
 # @orderly.network/futures
 
+## 4.8.5
+
+### Patch Changes
+
+- 3f0c08b: feat: Trading leaderboard points integration and SDK version display
+- Updated dependencies [3f0c08b]
+  - @kodiak-finance/orderly-types@2.8.5
+  - @kodiak-finance/orderly-utils@2.8.5
+
 ## 4.8.4
 
 ### Patch Changes

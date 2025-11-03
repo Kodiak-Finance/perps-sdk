@@ -1,5 +1,21 @@
 # @orderly.network/ui-tradingview
 
+## 2.8.5
+
+### Patch Changes
+
+- 3f0c08b: feat: Trading leaderboard points integration and SDK version display
+- Updated dependencies [3f0c08b]
+  - @kodiak-finance/orderly-ui-connector@2.8.5
+  - @kodiak-finance/orderly-ui-positions@2.8.5
+  - @kodiak-finance/orderly-hooks@2.8.5
+  - @kodiak-finance/orderly-i18n@2.8.5
+  - @kodiak-finance/orderly-react-app@2.8.5
+  - @kodiak-finance/orderly-net@2.8.5
+  - @kodiak-finance/orderly-types@2.8.5
+  - @kodiak-finance/orderly-ui@2.8.5
+  - @kodiak-finance/orderly-utils@2.8.5
+
 ## 2.8.4
 
 ### Patch Changes
