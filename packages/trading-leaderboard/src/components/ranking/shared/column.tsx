@@ -7,6 +7,7 @@ import {
   useScreen,
   cn,
   toast,
+  Spinner,
 } from "@kodiak-finance/orderly-ui";
 import firstBadge from "../../../img/first_badge.png";
 import secondBadge from "../../../img/second_badge.png";
@@ -18,12 +19,14 @@ export type RankingColumnFields =
   | "address"
   | "volume"
   | "pnl"
+  | "points"
   | "rewards";
 
 export const useRankingColumns = (
   fields?: RankingColumnFields[],
   address?: string,
   enableSort?: boolean,
+  isPointsLoading?: boolean,
 ) => {
   const { t } = useTranslation();
   const { isMobile } = useScreen();
@@ -177,6 +180,21 @@ export const useRankingColumns = (
         width: 90,
       },
       {
+        title: t("common.points"),
+        dataIndex: "points",
+        align: isMobile ? "right" : "left",
+        render: (value: number) => {
+          if (isPointsLoading) {
+            return <Spinner size="sm" />;
+          }
+          if (value === undefined || value === null) {
+            return "-";
+          }
+          return <Text.numeral dp={2}>{value}</Text.numeral>;
+        },
+        width: 90,
+      },
+      {
         title: t("tradingLeaderboard.estimatedRewards"),
         dataIndex: "rewards",
         align: isMobile ? "right" : "left",
@@ -201,7 +219,7 @@ export const useRankingColumns = (
     return columns.filter((column) =>
       fields?.includes(column.dataIndex as RankingColumnFields),
     );
-  }, [t, isMobile, address, fields, enableSort]);
+  }, [t, isMobile, address, fields, enableSort, isPointsLoading]);
 };
 
 const FirstRankIcon = () => {

@@ -62,6 +62,7 @@
   "common.unrealizedPnl": "未实现盈亏",
   "common.realizedPnl": "已实现盈亏",
   "common.pnl": "盈亏",
+  "common.points": "积分",
   "common.totalValue": "总价值",
   "common.address": "地址",
   "common.address.search.placeholder": "搜索地址",

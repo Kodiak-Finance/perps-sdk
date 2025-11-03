@@ -31,6 +31,7 @@ export const Ranking: FC<RankingProps> = (props) => {
     props.fields,
     props.address,
     typeof props.onSort === "function",
+    (props as any).isPointsLoading,
   );
   const { isMobile } = useScreen();
 

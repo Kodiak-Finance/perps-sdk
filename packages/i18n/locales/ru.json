@@ -62,6 +62,7 @@
   "common.unrealizedPnl": "Нереализованный PnL",
   "common.realizedPnl": "Реализованный PnL",
   "common.pnl": "Прибыль/Убыток",
+  "common.points": "Баллы",
   "common.totalValue": "Общая стоимость",
   "common.address": "Адрес",
   "common.address.search.placeholder": "Поиск адреса",

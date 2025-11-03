@@ -68,6 +68,7 @@ export const common = {
   "common.unrealizedPnl": "Unrealized PnL",
   "common.realizedPnl": "Realized PnL",
   "common.pnl": "PnL",
+  "common.points": "Points",
   "common.totalValue": "Total value",
   "common.address": "Address",
   "common.address.search.placeholder": "Search address",
