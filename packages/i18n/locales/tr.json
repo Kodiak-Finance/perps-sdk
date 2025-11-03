@@ -62,6 +62,7 @@
   "common.unrealizedPnl": "Gerçekleşmemiş K/Z",
   "common.realizedPnl": "Gerçekleşmiş K/Z",
   "common.pnl": "Kâr/Zarar",
+  "common.points": "Puanlar",
   "common.totalValue": "Toplam değer",
   "common.address": "Adres",
   "common.address.search.placeholder": "Adres ara",

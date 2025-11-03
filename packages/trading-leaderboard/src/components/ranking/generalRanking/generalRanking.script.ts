@@ -6,8 +6,13 @@ import {
   useQuery,
 } from "@kodiak-finance/orderly-hooks";
 import { API } from "@kodiak-finance/orderly-types";
-import { TableSort, usePagination, useScreen } from "@kodiak-finance/orderly-ui";
+import {
+  TableSort,
+  usePagination,
+  useScreen,
+} from "@kodiak-finance/orderly-ui";
 import { useEndReached } from "../../../hooks/useEndReached";
+import { usePointsData } from "../../../hooks/usePointsData";
 import { DateRange } from "../../../type";
 import { formatDateRange, getDateRange } from "../../../utils";
 import { getCurrentAddressRowKey, isSameAddress } from "../shared/util";
@@ -23,11 +28,11 @@ export type GeneralRankingData = {
   realized_pnl: number;
   total_fee: number;
 
-  // custom field
   key?: string;
   rank?: number | string;
   volume?: number;
   pnl?: number;
+  points?: number;
 };
 
 export type GeneralRankingResponse = {
@@ -42,6 +47,7 @@ export type GeneralRankingScriptOptions = {
   dateRange?: DateRange | null;
   address?: string;
   sortKey?: "perp_volume" | "realized_pnl";
+  pointsEndpoint?: string;
 };
 
 export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
@@ -49,6 +55,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     dateRange = getDateRange(90),
     address: searchValue,
     sortKey = "perp_volume",
+    pointsEndpoint,
   } = options || {};
 
   const [initialSort] = useState<TableSort>({
@@ -72,6 +79,23 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     sort,
     searchValue,
   });
+
+  const { rows: pointsRows, isLoading: isPointsLoading } = usePointsData(
+    pointsEndpoint ? dateRange : null,
+    pointsEndpoint,
+  );
+
+  /**
+   * Build points lookup map for O(1) address lookups.
+   * Keys are lowercased addresses for consistent lookups.
+   */
+  const pointsMap = useMemo(() => {
+    const map = new Map<string, number>();
+    pointsRows.forEach((item) => {
+      map.set(item.address, item.points);
+    });
+    return map;
+  }, [pointsRows]);
 
   const getUrl = (args: {
     page: number;
@@ -151,15 +175,12 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     },
   );
 
-  // it will use first page data cache
   const { data: top100Data } = useQuery<GeneralRankingResponse>(
-    state.address
-      ? getUrl({
-          page: 1,
-          pageSize: 100,
-          sort: `descending_${sort?.sortKey || "perp_volume"}`,
-        })
-      : null,
+    getUrl({
+      page: 1,
+      pageSize: 100,
+      sort: `descending_${sort?.sortKey || "perp_volume"}`,
+    }),
     {
       formatter: (res) => res,
       revalidateOnFocus: false,
@@ -254,9 +275,9 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     const rankList = addRankForList(list, total);
 
     if (page === 1 && !searchValue) {
-      return formatData([...userDataList, ...rankList]);
+      return mergePointsData([...userDataList, ...rankList], pointsMap);
     }
-    return formatData(rankList);
+    return mergePointsData(rankList, pointsMap);
   }, [
     data,
     page,
@@ -266,6 +287,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     addRankForList,
     campaignRankingList,
     filteredCampaignData,
+    pointsMap,
   ]);
 
   const dataList = useMemo(() => {
@@ -289,9 +311,9 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     const rankList = addRankForList(flatList, total);
 
     if (!searchValue) {
-      return formatData([...userDataList, ...rankList]);
+      return mergePointsData([...userDataList, ...rankList], pointsMap);
     }
-    return formatData(rankList);
+    return mergePointsData(rankList, pointsMap);
   }, [
     infiniteData,
     userDataList,
@@ -299,6 +321,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     addRankForList,
     campaignRankingList,
     filteredCampaignData,
+    pointsMap,
   ]);
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -372,6 +395,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     onSort,
     dataSource,
     isLoading: isLoading || isValidating,
+    isPointsLoading,
     isMobile,
     sentinelRef,
     dataList,
@@ -379,12 +403,19 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
   };
 }
 
-function formatData(data: any[]) {
-  return data.map((item) => ({
-    ...item,
-    volume: item.perp_volume,
-    pnl: item.realized_pnl,
-  }));
+function mergePointsData(data: any[], pointsMap: Map<string, number>) {
+  return data.map((item) => {
+    const address = item.address?.toLowerCase();
+    const rawPoints = pointsMap.get(address) ?? 0;
+    // Format points to max 3 decimal places
+    const points = parseFloat(rawPoints.toFixed(3));
+    return {
+      ...item,
+      volume: item.perp_volume,
+      pnl: item.realized_pnl,
+      points,
+    };
+  });
 }
 
 // for 128 campaign hardcode

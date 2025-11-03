@@ -21,6 +21,7 @@ export type RankingProps = {
   style?: React.CSSProperties;
   className?: string;
   fields: RankingColumnFields[];
+  isPointsLoading?: boolean;
 } & Omit<GeneralRankingScriptReturn, "dataList" | "dataSource"> & {
     dataList: RankingData[];
     dataSource: RankingData[];
@@ -31,6 +32,7 @@ export const Ranking: FC<RankingProps> = (props) => {
     props.fields,
     props.address,
     typeof props.onSort === "function",
+    props.isPointsLoading,
   );
   const { isMobile } = useScreen();
 

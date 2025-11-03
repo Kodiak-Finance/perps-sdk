@@ -2,7 +2,7 @@
  * SDK Version - BUMP THIS WHEN RELEASING
  * Keep in sync with root package.json version
  */
-export const SDK_VERSION = "2.8.3";
+export const SDK_VERSION = "2.8.5";
 
 export type ChangesetEntry = {
   date: string;
@@ -20,7 +20,22 @@ export type Changesets = Record<string, ChangesetEntry>;
  * ADD NEW ENTRIES WHEN BUMPING SDK_VERSION
  */
 export const CHANGESETS: Changesets = {
-  "2.8.3": {
+  "2.8.5": {
+    date: "2025-11-03",
+    title: "Trading leaderboard points integration & SDK version display",
+    summary:
+      "Added points display to trading leaderboard with configurable API endpoint support and version display in footer",
+    highlights: [
+      "Points column on desktop leaderboard (when endpoint provided)",
+      "Points tab on mobile leaderboard for toggling between Volume/PnL/Points metrics",
+      "Configurable points API endpoint via pointsEndpoint prop",
+      "Points data auto-loads when endpoint is provided, hides when empty",
+      "SDK version (v2.8.5) now displayed in footer",
+    ],
+    packages: ["orderly-trading-leaderboard", "orderly-ui-scaffold"],
+    type: "feature",
+  },
+  "2.8.4": {
     date: "2025-10-28",
     title: "Mobile UX improvements & Mac trackpad fixes",
     summary:
@@ -41,7 +56,7 @@ export const CHANGESETS: Changesets = {
     ],
     type: "improvement",
   },
-  "2.8.2": {
+  "2.8.3": {
     date: "2025-10-20",
     title: "Bug fixes and stability improvements",
     summary: "Various bug fixes and minor improvements",

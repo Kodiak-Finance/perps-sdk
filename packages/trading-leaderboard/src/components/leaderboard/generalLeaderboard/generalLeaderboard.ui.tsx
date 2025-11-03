@@ -14,6 +14,7 @@ export type GeneralLeaderboardProps = {
     start_time: Date | string;
     end_time: Date | string;
   };
+  pointsEndpoint?: string;
 } & GeneralLeaderboardScriptReturn;
 
 export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
@@ -21,14 +22,26 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
 
   const fields = useMemo<RankingColumnFields[]>(() => {
     if (isMobile) {
+      if (props.activeTab === LeaderboardTab.Points) {
+        return ["rank", "address", "points"];
+      }
       return [
         "rank",
         "address",
         props.activeTab === LeaderboardTab.Volume ? "volume" : "pnl",
       ];
     }
-    return ["rank", "address", "volume", "pnl"];
-  }, [isMobile, props.activeTab]);
+    const baseFields: RankingColumnFields[] = [
+      "rank",
+      "address",
+      "volume",
+      "pnl",
+    ];
+    if (props.pointsEndpoint) {
+      baseFields.push("points");
+    }
+    return baseFields;
+  }, [isMobile, props.activeTab, props.pointsEndpoint]);
 
   if (isMobile) {
     return (
@@ -50,6 +63,7 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
           className="oui-pt-0"
           activeTab={props.activeTab}
           onTabChange={props.onTabChange}
+          pointsEndpoint={props.pointsEndpoint}
         />
 
         <GeneralRankingWidget
@@ -61,6 +75,7 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
               : "realized_pnl"
           }
           fields={fields}
+          pointsEndpoint={props.pointsEndpoint}
         />
       </Box>
     );
@@ -86,6 +101,7 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
         dateRange={props.dateRange}
         address={props.searchValue}
         fields={fields}
+        pointsEndpoint={props.pointsEndpoint}
       />
     </Box>
   );

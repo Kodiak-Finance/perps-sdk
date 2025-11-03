@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   CampaignConfig,
   CampaignLeaderboardWidget,
@@ -9,7 +10,6 @@ import {
   TradingLeaderboardProvider,
 } from "@kodiak-finance/orderly-trading-leaderboard";
 import { Box } from "@kodiak-finance/orderly-ui";
-import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BaseLayout } from "../../../components/layout";
 import { campaignRuleMap } from "./rules/constants";
 import { useCustomRanking } from "./useCustomRanking";
@@ -504,11 +504,21 @@ export const CampaignRanking: Story = {
 };
 
 export const GeneralLeaderboard: Story = {
-  render: (args) => {
+  argTypes: {
+    pointsEndpoint: {
+      control: "text",
+      description:
+        "Optional API endpoint for points data. Leave empty to disable Points tab.",
+    },
+  },
+  args: {
+    pointsEndpoint: "https://staging.backend.kodiak.finance/orderly/points",
+  },
+  render: (args: any) => {
     return (
       <Box p={3}>
         <TradingLeaderboardProvider>
-          <GeneralLeaderboardWidget />
+          <GeneralLeaderboardWidget pointsEndpoint={args.pointsEndpoint} />
         </TradingLeaderboardProvider>
       </Box>
     );
