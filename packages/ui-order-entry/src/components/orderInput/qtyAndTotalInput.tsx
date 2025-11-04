@@ -34,7 +34,7 @@ export const QtyAndTotalInput: FC<QtyAndTotalInputProps> = memo((props) => {
         onFocus={onFocus(InputType.QUANTITY)}
         onBlur={onBlur(InputType.QUANTITY)}
         inputMode="decimal"
-        className="!oui-rounded-r"
+        className="!oui-rounded-r oui-rounded-bl-xl"
       />
       <CustomInput
         id="order_total_input"
@@ -50,6 +50,7 @@ export const QtyAndTotalInput: FC<QtyAndTotalInputProps> = memo((props) => {
         onFocus={onFocus(InputType.TOTAL)}
         onBlur={onBlur(InputType.TOTAL)}
         inputMode="decimal"
+        className="!oui-rounded-bl oui-rounded-br-xl"
       />
     </Grid>
   );

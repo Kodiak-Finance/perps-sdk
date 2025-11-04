@@ -2,7 +2,7 @@
  * SDK Version - BUMP THIS WHEN RELEASING
  * Keep in sync with root package.json version
  */
-export const SDK_VERSION = "2.8.5";
+export const SDK_VERSION = "2.8.6";
 
 export type ChangesetEntry = {
   date: string;
@@ -20,6 +20,25 @@ export type Changesets = Record<string, ChangesetEntry>;
  * ADD NEW ENTRIES WHEN BUMPING SDK_VERSION
  */
 export const CHANGESETS: Changesets = {
+  "2.8.6": {
+    date: "2025-11-04",
+    title: "UI improvements and WebSocket performance optimization",
+    summary:
+      "Fixed leaderboard points display, network selector scrolling, input box styling, and resolved WebSocket message queue lag on tab visibility",
+    highlights: [
+      "Leaderboard points now display as whole numbers instead of decimals",
+      "Fixed network selector dropdown scrolling in withdraw form for all networks",
+      "Improved Qty/Total input boxes with asymmetrical rounding design",
+      "Resolved WebSocket price catch-up lag when returning to app from background",
+    ],
+    packages: [
+      "orderly-trading-leaderboard",
+      "orderly-ui-transfer",
+      "orderly-ui-order-entry",
+      "orderly-hooks",
+    ],
+    type: "improvement",
+  },
   "2.8.5": {
     date: "2025-11-03",
     title: "Trading leaderboard points integration & SDK version display",

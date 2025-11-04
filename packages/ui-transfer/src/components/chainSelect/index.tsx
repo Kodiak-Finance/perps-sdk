@@ -139,6 +139,7 @@ export const ChainSelect: React.FC<ChainSelectProps> = (props) => {
             "oui-bg-base-8 oui-p-1",
             "oui-w-[var(--radix-dropdown-menu-trigger-width)]",
             "oui-rounded-md oui-select-none",
+            "!oui-overflow-auto",
           )}
         >
           <ScrollArea className="oui-h-[254px]">
