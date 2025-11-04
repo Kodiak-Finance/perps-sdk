@@ -1,5 +1,20 @@
 # @orderly.network/hooks
 
+## 2.8.6
+
+### Patch Changes
+
+- ba9e214: fix: Display leaderboard points as whole numbers, fix network selector scrolling, improve Qty/Total box styling, and resolve WebSocket price catch-up lag
+- Updated dependencies [ba9e214]
+  - @kodiak-finance/orderly-core@2.8.6
+  - @kodiak-finance/orderly-default-evm-adapter@2.8.6
+  - @kodiak-finance/orderly-default-solana-adapter@2.8.6
+  - @kodiak-finance/orderly-net@2.8.6
+  - @kodiak-finance/orderly-perp@4.8.6
+  - @kodiak-finance/orderly-types@2.8.6
+  - @kodiak-finance/orderly-utils@2.8.6
+  - @kodiak-finance/orderly-web3-provider-ethers@2.8.6
+
 ## 2.8.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @orderly.network/net
 
+## 2.8.6
+
+### Patch Changes
+
+- ba9e214: fix: Display leaderboard points as whole numbers, fix network selector scrolling, improve Qty/Total box styling, and resolve WebSocket price catch-up lag
+
 ## 2.8.5
 
 ### Patch Changes
