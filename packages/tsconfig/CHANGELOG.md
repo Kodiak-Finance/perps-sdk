@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.5
+
+### Patch Changes
+
+- ba9e214: fix: Display leaderboard points as whole numbers, fix network selector scrolling, improve Qty/Total box styling, and resolve WebSocket price catch-up lag
+
 ## 0.11.4
 
 ### Patch Changes

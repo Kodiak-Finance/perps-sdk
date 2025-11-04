@@ -1,5 +1,17 @@
 # @orderly.network/ui-share
 
+## 2.8.6
+
+### Patch Changes
+
+- ba9e214: fix: Display leaderboard points as whole numbers, fix network selector scrolling, improve Qty/Total box styling, and resolve WebSocket price catch-up lag
+- Updated dependencies [ba9e214]
+  - @kodiak-finance/orderly-hooks@2.8.6
+  - @kodiak-finance/orderly-i18n@2.8.6
+  - @kodiak-finance/orderly-types@2.8.6
+  - @kodiak-finance/orderly-ui@2.8.6
+  - @kodiak-finance/orderly-utils@2.8.6
+
 ## 2.8.5
 
 ### Patch Changes
