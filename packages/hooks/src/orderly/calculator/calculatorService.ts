@@ -38,6 +38,24 @@ class CalculatorService {
     calculators: [string, Calculator[]][],
   ) {
     this.calculators = new Map(calculators);
+    this.bindVisibilityListener();
+  }
+
+  private bindVisibilityListener() {
+    if (typeof document !== "undefined") {
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+          this.onTabBecomeVisible();
+        }
+      });
+    }
+  }
+
+  private onTabBecomeVisible() {
+    // Clear stale queued calculations when tab becomes visible
+    // Price data is ephemeral and constantly updating, so old queued messages are obsolete
+    // The next price update will provide the latest data
+    this.calcQueue = [];
   }
 
   register(scope: string, calculator: Calculator) {

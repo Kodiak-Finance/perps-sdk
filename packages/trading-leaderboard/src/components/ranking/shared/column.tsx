@@ -190,7 +190,7 @@ export const useRankingColumns = (
           if (value === undefined || value === null) {
             return "-";
           }
-          return <Text.numeral dp={2}>{value}</Text.numeral>;
+          return <Text.numeral dp={0}>{value}</Text.numeral>;
         },
         width: 90,
       },
