@@ -33,6 +33,8 @@ class CalculatorService {
 
   private isPaused = false;
 
+  private visibilityListener?: () => void;
+
   constructor(
     private readonly scheduler: CalculatorScheduler,
     calculators: [string, Calculator[]][],
@@ -43,18 +45,16 @@ class CalculatorService {
 
   private bindVisibilityListener() {
     if (typeof document !== "undefined") {
-      document.addEventListener("visibilitychange", () => {
+      this.visibilityListener = () => {
         if (document.visibilityState === "visible") {
           this.onTabBecomeVisible();
         }
-      });
+      };
+      document.addEventListener("visibilitychange", this.visibilityListener);
     }
   }
 
   private onTabBecomeVisible() {
-    // Clear stale queued calculations when tab becomes visible
-    // Price data is ephemeral and constantly updating, so old queued messages are obsolete
-    // The next price update will provide the latest data
     this.calcQueue = [];
   }
 
@@ -173,6 +173,9 @@ class CalculatorService {
   stop() {
     this.calcQueue = [];
     this.ctx?.clearCache();
+    if (this.visibilityListener && typeof document !== "undefined") {
+      document.removeEventListener("visibilitychange", this.visibilityListener);
+    }
   }
 
   private get windowIsVisible() {
