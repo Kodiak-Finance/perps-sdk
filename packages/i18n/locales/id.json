@@ -916,6 +916,7 @@
   "announcement.type.listing": "Listing",
   "announcement.type.maintenance": "Pemeliharaan",
   "announcement.type.delisting": "Delisting",
+  "announcement.type.campaign": "Campaign",
   "maintenance.dialog.title": "Peningkatan sistem sedang berlangsung",
   "maintenance.dialog.description": "Maaf, {{brokerName}} sementara tidak tersedia karena peningkatan terjadwal. Layanan diharapkan kembali pada {{endDate}}.",
   "maintenance.tips.description": "{{brokerName}} akan sementara tidak tersedia untuk peningkatan terjadwal dari {{startDate}} hingga {{endDate}}.",

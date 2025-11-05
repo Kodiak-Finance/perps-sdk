@@ -916,6 +916,7 @@
   "announcement.type.listing": "上場",
   "announcement.type.maintenance": "メンテナンス",
   "announcement.type.delisting": "上場廃止",
+  "announcement.type.campaign": "キャンペーン",
   "maintenance.dialog.title": "システムアップグレード中",
   "maintenance.dialog.description": "申し訳ありませんが、{{brokerName}}は予定されたアップグレードのため一時的に利用できません。サービスは{{endDate}}までに復旧する予定です。",
   "maintenance.tips.description": "{{brokerName}}は{{startDate}}から{{endDate}}までの予定されたアップグレードのため一時的に利用できません。",

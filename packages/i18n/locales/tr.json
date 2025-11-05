@@ -916,6 +916,7 @@
   "announcement.type.listing": "Listeleme",
   "announcement.type.maintenance": "Bakım",
   "announcement.type.delisting": "Listeden Çıkarma",
+  "announcement.type.campaign": "Kampanya",
   "maintenance.dialog.title": "Sistem güncellemesi devam ediyor",
   "maintenance.dialog.description": "Üzgünüz, {{brokerName}} planlı bir güncelleme nedeniyle geçici olarak kullanılamıyor. Hizmetin {{endDate}} tarihinde tekrar kullanılabilir olması bekleniyor.",
   "maintenance.tips.description": "{{brokerName}}, {{startDate}} ile {{endDate}} arasında planlı bir güncelleme nedeniyle geçici olarak kullanılamayacak.",
