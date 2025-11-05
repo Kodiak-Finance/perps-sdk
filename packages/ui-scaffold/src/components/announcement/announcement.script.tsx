@@ -56,6 +56,7 @@ const sortDataByUpdatedTime = (ori: API.Announcement) => {
 
 const useAnnouncementData = () => {
   const ws = useWS();
+  const { customAnnouncements } = useAppContext();
 
   const [announcementStore, setStore] = useLocalStorage<AnnouncementStore>(
     ORDERLY_ANNOUNCEMENT_KEY,
@@ -224,8 +225,18 @@ const useAnnouncementData = () => {
     }
   }, [startTime, endTime, status, brokerName, t]);
 
+  // Merge custom announcements with API announcements
+  const mergedTips = useMemo(() => {
+    const tipsCopy = { ...tips };
+    if (customAnnouncements && customAnnouncements.length > 0) {
+      // Custom announcements appear first (higher priority)
+      tipsCopy.rows = [...customAnnouncements, ...(tips.rows || [])];
+    }
+    return sortDataByUpdatedTime(tipsCopy);
+  }, [tips, customAnnouncements]);
+
   return {
-    tips: sortDataByUpdatedTime(tips),
+    tips: mergedTips,
     maintenanceDialogInfo: maintenanceDialogInfo,
   };
 };

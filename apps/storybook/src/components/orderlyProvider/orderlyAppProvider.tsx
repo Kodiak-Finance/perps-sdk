@@ -20,6 +20,7 @@ export const OrderlyAppProvider: FC<
       configStore={configStore}
       appIcons={orderlyAppProviderConfig.appIcons}
       restrictedInfo={orderlyAppProviderConfig.restrictedInfo}
+      customAnnouncements={orderlyAppProviderConfig.customAnnouncements}
       enableSwapDeposit={true}
       onRouteChange={onRouteChange}
       widgetConfigs={widgetConfigs}

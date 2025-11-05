@@ -5,6 +5,7 @@ export enum AnnouncementType {
   Listing = "LISTING",
   Maintenance = "MAINTENANCE",
   Delisting = "DELISTING",
+  Campaign = "CAMPAIGN",
 }
 
 export declare namespace API {

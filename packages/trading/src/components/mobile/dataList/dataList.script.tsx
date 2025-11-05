@@ -65,9 +65,9 @@ export const useDataListScript = (props: {
         try {
           // await cancelAll(null, { source_type: "ALL" });
           if (tab === DataListTabType.tp_sl) {
-            await cancelAllTPSLOrders();
+            await cancelAllTPSLOrders(symbol);
           } else {
-            await cancelAllOrders();
+            await cancelAllOrders(symbol);
           }
           return Promise.resolve(true);
         } catch (error) {

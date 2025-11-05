@@ -15,6 +15,10 @@ export type GeneralLeaderboardProps = {
     end_time: Date | string;
   };
   pointsEndpoint?: string;
+  timeRange?: {
+    from?: string | Date;
+    to?: string | Date | "now";
+  };
 } & GeneralLeaderboardScriptReturn;
 
 export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {

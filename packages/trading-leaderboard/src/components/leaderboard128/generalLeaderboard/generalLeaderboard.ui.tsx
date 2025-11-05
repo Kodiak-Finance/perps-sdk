@@ -15,6 +15,10 @@ export type GeneralLeaderboardIProps = {
     end_time: Date | string;
   };
   weekOneAddresses?: string[];
+  timeRange?: {
+    from?: string | Date;
+    to?: string | Date | "now";
+  };
 } & GeneralLeaderboardIScriptReturn;
 
 export const GeneralLeaderboardI: FC<GeneralLeaderboardIProps> = (props) => {

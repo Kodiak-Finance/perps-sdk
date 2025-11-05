@@ -5,12 +5,77 @@ import {
   isBefore,
   isAfter,
   isWithinInterval,
+  parseISO,
 } from "date-fns";
+import { DateRange } from "./type";
 
 export const getDateRange = (offsetDay: number) => {
   return {
     from: subDays(new Date(), offsetDay - 1)!,
     to: new Date()!,
+  };
+};
+
+/**
+ * Parse timeRange prop which can accept string dates or 'now'
+ * Supports:
+ * - { from: '2025-01-01' } - from date, to defaults to today
+ * - { from: '2025-01-01', to: '2025-11-15' } - both dates
+ * - { from: '2025-01-01', to: 'now' } - to is current date
+ *
+ * @param timeRange Raw timeRange input with optional string dates and 'now' support
+ * @returns Parsed DateRange with Date objects, or null if no dates are specified
+ */
+export const parseTimeRange = (
+  timeRange:
+    | {
+        from?: string | Date;
+        to?: string | Date | "now";
+      }
+    | null
+    | undefined,
+): DateRange | null => {
+  if (!timeRange) {
+    return null;
+  }
+
+  const { from, to } = timeRange;
+
+  // If neither from nor to is specified, return null to use defaults
+  if (!from && !to) {
+    return null;
+  }
+
+  // Must specify 'from' if you want to use custom timeRange
+  if (!from) {
+    console.warn(
+      "timeRange.from must be specified when using custom timeRange. Ignoring timeRange.",
+    );
+    return null;
+  }
+
+  const fromDate = typeof from === "string" ? parseISO(from) : from;
+
+  // Default to today if 'to' is not specified
+  const toDate = to
+    ? to === "now"
+      ? new Date()
+      : typeof to === "string"
+        ? parseISO(to)
+        : to
+    : new Date(); // Default to today
+
+  // Validate that from is not after to
+  if (fromDate > toDate) {
+    console.warn(
+      `timeRange.from (${formatDateRange(fromDate)}) is after timeRange.to (${formatDateRange(toDate)}). Ignoring timeRange.`,
+    );
+    return null;
+  }
+
+  return {
+    from: fromDate,
+    to: toDate,
   };
 };
 

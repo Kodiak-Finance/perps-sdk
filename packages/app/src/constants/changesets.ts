@@ -2,7 +2,7 @@
  * SDK Version - BUMP THIS WHEN RELEASING
  * Keep in sync with root package.json version
  */
-export const SDK_VERSION = "2.8.6";
+export const SDK_VERSION = "2.8.7";
 
 export type ChangesetEntry = {
   date: string;
@@ -20,6 +20,26 @@ export type Changesets = Record<string, ChangesetEntry>;
  * ADD NEW ENTRIES WHEN BUMPING SDK_VERSION
  */
 export const CHANGESETS: Changesets = {
+  "2.8.7": {
+    date: "2025-11-05",
+    title: "Custom announcements and leaderboard timeRange features",
+    summary:
+      "Added support for passing custom broker announcements as props that merge with API announcements, and enabled configurable default timeRange for leaderboard without requiring SDK version bumps.",
+    highlights: [
+      "New customAnnouncements prop on OrderlyAppProvider for broker-specific announcements",
+      "Custom announcements merge with API announcements with higher priority display",
+      "Added Campaign announcement type with UI styling and i18n support",
+      "Leaderboard now supports configurable timeRange prop with 'now' keyword support for dynamic date ranges",
+      "Default leaderboard view can be set via timeRange without SDK version changes",
+    ],
+    packages: [
+      "kodiak-orderly-react-app",
+      "kodiak-orderly-ui-scaffold",
+      "kodiak-orderly-i18n",
+      "kodiak-orderly-trading-leaderboard",
+    ],
+    type: "feature",
+  },
   "2.8.6": {
     date: "2025-11-04",
     title: "UI improvements and WebSocket performance optimization",
@@ -32,10 +52,10 @@ export const CHANGESETS: Changesets = {
       "Resolved WebSocket price catch-up lag when returning to app from background",
     ],
     packages: [
-      "orderly-trading-leaderboard",
-      "orderly-ui-transfer",
-      "orderly-ui-order-entry",
-      "orderly-hooks",
+      "kodiak-orderly-trading-leaderboard",
+      "kodiak-orderly-ui-transfer",
+      "kodiak-orderly-ui-order-entry",
+      "kodiak-orderly-hooks",
     ],
     type: "improvement",
   },
@@ -51,7 +71,10 @@ export const CHANGESETS: Changesets = {
       "Points data auto-loads when endpoint is provided, hides when empty",
       "SDK version (v2.8.5) now displayed in footer",
     ],
-    packages: ["orderly-trading-leaderboard", "orderly-ui-scaffold"],
+    packages: [
+      "kodiak-orderly-trading-leaderboard",
+      "kodiak-orderly-ui-scaffold",
+    ],
     type: "feature",
   },
   "2.8.4": {
@@ -67,11 +90,11 @@ export const CHANGESETS: Changesets = {
       "Improved order editing experience on mobile",
     ],
     packages: [
-      "orderly-ui-transfer",
-      "orderly-ui-order-entry",
-      "orderly-ui-orders",
-      "orderly-ui-positions",
-      "orderly-ui-tpsl",
+      "kodiak-orderly-ui-transfer",
+      "kodiak-orderly-ui-order-entry",
+      "kodiak-orderly-ui-orders",
+      "kodiak-orderly-ui-positions",
+      "kodiak-orderly-ui-tpsl",
     ],
     type: "improvement",
   },
@@ -83,7 +106,7 @@ export const CHANGESETS: Changesets = {
       "Fixed order submission validation",
       "Improved websocket reconnection handling",
     ],
-    packages: ["orderly-core", "orderly-net"],
+    packages: ["kodiak-orderly-core", "kodiak-orderly-net"],
     type: "bugfix",
   },
 };

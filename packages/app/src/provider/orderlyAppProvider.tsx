@@ -56,6 +56,7 @@ const OrderlyAppProvider: React.FC<OrderlyAppProviderProps> = (props) => {
             restrictedInfo={props.restrictedInfo}
             onRouteChange={props.onRouteChange}
             widgetConfigs={widgetConfigs}
+            customAnnouncements={props.customAnnouncements}
           >
             <UILocaleProvider locale={uiLocale}>
               <TooltipProvider delayDuration={300}>

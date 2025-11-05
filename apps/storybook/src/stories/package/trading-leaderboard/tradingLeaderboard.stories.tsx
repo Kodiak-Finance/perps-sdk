@@ -525,8 +525,92 @@ export const GeneralLeaderboard: Story = {
   },
 };
 
+export const GeneralLeaderboardWithCustomTimeRange: Story = {
+  argTypes: {
+    pointsEndpoint: {
+      control: "text",
+      description:
+        "Optional API endpoint for points data. Leave empty to disable Points tab.",
+    },
+    fromDate: {
+      control: "text",
+      description: "Start date (YYYY-MM-DD format or leave empty)",
+    },
+    toDate: {
+      control: "text",
+      description: "End date (YYYY-MM-DD format or 'now' for current date)",
+    },
+  } as any,
+  args: {
+    pointsEndpoint: "https://staging.backend.kodiak.finance/orderly/points",
+    fromDate: "2025-11-01",
+    toDate: "",
+  } as any,
+  render: (args: any) => {
+    const timeRange =
+      args.fromDate || args.toDate
+        ? {
+            from: args.fromDate || undefined,
+            to: args.toDate || undefined,
+          }
+        : undefined;
+
+    return (
+      <Box p={3}>
+        <TradingLeaderboardProvider timeRange={timeRange}>
+          <GeneralLeaderboardWidget
+            pointsEndpoint={args.pointsEndpoint}
+            timeRange={timeRange}
+          />
+        </TradingLeaderboardProvider>
+      </Box>
+    );
+  },
+};
+
+export const GeneralLeaderboardWith15DayCompetition: Story = {
+  argTypes: {
+    pointsEndpoint: {
+      control: "text",
+      description:
+        "Optional API endpoint for points data. Leave empty to disable Points tab.",
+    },
+    fromDate: {
+      control: "text",
+      description: "Competition start date (YYYY-MM-DD format)",
+    },
+    toDate: {
+      control: "text",
+      description:
+        "Competition end date (YYYY-MM-DD format or 'now' for current date)",
+    },
+  } as any,
+  args: {
+    pointsEndpoint: "https://staging.backend.kodiak.finance/orderly/points",
+    fromDate: "2025-11-01",
+    toDate: "now",
+  } as any,
+  render: (args: any) => {
+    const timeRange = {
+      from: args.fromDate,
+      to: args.toDate,
+    };
+
+    return (
+      <Box p={3}>
+        <TradingLeaderboardProvider timeRange={timeRange}>
+          <GeneralLeaderboardWidget
+            pointsEndpoint={args.pointsEndpoint}
+            timeRange={timeRange}
+          />
+        </TradingLeaderboardProvider>
+      </Box>
+    );
+  },
+};
+
 export const CampaignLeaderboard: Story = {
-  render: (args) => {
+  render: () => {
     return (
       <Box p={3}>
         <TradingLeaderboardProvider>
