@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { RestrictedInfoReturns } from "@kodiak-finance/orderly-hooks";
+import { API } from "@kodiak-finance/orderly-types";
 import { useWalletStateHandle } from "../hooks/useWalletStateHandle";
 
 export type RouteOption = {
@@ -32,6 +33,8 @@ export type AppContextState = {
   setShowAnnouncement: (show: boolean) => void;
   onRouteChange?: (option: RouteOption) => void;
   widgetConfigs?: WidgetConfigs;
+  /** Custom announcements to merge with API announcements */
+  customAnnouncements?: API.AnnouncementRow[];
 };
 
 export const AppStateContext = createContext<AppContextState>({

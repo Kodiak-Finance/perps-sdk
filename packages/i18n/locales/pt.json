@@ -916,6 +916,7 @@
   "announcement.type.listing": "Listagem",
   "announcement.type.maintenance": "Manutenção",
   "announcement.type.delisting": "Remoção da listagem",
+  "announcement.type.campaign": "Campanha",
   "maintenance.dialog.title": "Atualização do sistema em andamento",
   "maintenance.dialog.description": "Desculpe, {{brokerName}} está temporariamente indisponível devido a uma atualização programada. O serviço deve voltar até {{endDate}}.",
   "maintenance.tips.description": "{{brokerName}} estará temporariamente indisponível para uma atualização programada de {{startDate}} até {{endDate}}.",

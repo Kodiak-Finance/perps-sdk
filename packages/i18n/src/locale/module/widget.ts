@@ -49,6 +49,7 @@ export const widget = {
   "announcement.type.listing": "Listing",
   "announcement.type.maintenance": "Maintenance",
   "announcement.type.delisting": "Delisting",
+  "announcement.type.campaign": "Campaign",
 
   "maintenance.dialog.title": "System upgrade in progress",
   "maintenance.dialog.description":

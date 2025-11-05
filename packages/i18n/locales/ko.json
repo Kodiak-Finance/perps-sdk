@@ -916,6 +916,7 @@
   "announcement.type.listing": "상장",
   "announcement.type.maintenance": "점검",
   "announcement.type.delisting": "상장폐지",
+  "announcement.type.campaign": "캠페인",
   "maintenance.dialog.title": "시스템 업그레이드 진행 중",
   "maintenance.dialog.description": "죄송합니다. {{brokerName}}은(는) 예정된 업그레이드로 인해 일시적으로 사용할 수 없습니다. 서비스는 {{endDate}}까지 복구될 예정입니다.",
   "maintenance.tips.description": "{{brokerName}}은(는) {{startDate}}부터 {{endDate}}까지 예정된 업그레이드로 인해 일시적으로 사용할 수 없습니다.",

@@ -7,7 +7,7 @@ import {
 
 export type GeneralLeaderboardWidgetProps = Pick<
   GeneralLeaderboardProps,
-  "style" | "className" | "campaignDateRange" | "pointsEndpoint"
+  "style" | "className" | "campaignDateRange" | "pointsEndpoint" | "timeRange"
 >;
 
 export const GeneralLeaderboardWidget: FC<GeneralLeaderboardWidgetProps> = (
@@ -15,6 +15,7 @@ export const GeneralLeaderboardWidget: FC<GeneralLeaderboardWidgetProps> = (
 ) => {
   const state = useGeneralLeaderboardScript({
     campaignDateRange: props.campaignDateRange,
+    timeRange: props.timeRange,
   });
 
   return (
@@ -23,6 +24,7 @@ export const GeneralLeaderboardWidget: FC<GeneralLeaderboardWidgetProps> = (
       className={props.className}
       style={props.style}
       pointsEndpoint={props.pointsEndpoint}
+      timeRange={props.timeRange}
     />
   );
 };

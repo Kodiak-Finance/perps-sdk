@@ -8,6 +8,7 @@ import {
   WeeklyDateRange,
   getCurrentWeeklyRange,
   getCurrentOrAllTimeRange,
+  parseTimeRange,
 } from "../../../utils";
 
 export type GeneralLeaderboardScriptReturn = ReturnType<
@@ -22,12 +23,16 @@ export type GeneralLeaderboardScriptOptions = {
     start_time: Date | string;
     end_time: Date | string;
   };
+  timeRange?: {
+    from?: string | Date;
+    to?: string | Date | "now";
+  };
 };
 
 export function useGeneralLeaderboardScript(
   options?: GeneralLeaderboardScriptOptions,
 ) {
-  const { campaignDateRange } = options || {};
+  const { campaignDateRange, timeRange } = options || {};
 
   const weeklyRanges = useMemo(() => {
     if (!campaignDateRange) return [];
@@ -38,10 +43,17 @@ export function useGeneralLeaderboardScript(
     return getCurrentOrAllTimeRange(weeklyRanges);
   }, [weeklyRanges]);
 
+  const parsedTimeRange = useMemo(() => {
+    return parseTimeRange(timeRange);
+  }, [timeRange]);
+
   const [activeTab, setActiveTab] = useState<LeaderboardTab>(
     LeaderboardTab.Volume,
   );
-  const filterState = useFilter({ defaultRange: currentOrAllTimeRange });
+  const filterState = useFilter({
+    defaultRange: currentOrAllTimeRange,
+    customTimeRange: parsedTimeRange,
+  });
   const searchState = useSearch();
 
   const useCampaignDateRange = useMemo(() => {
@@ -59,7 +71,13 @@ export function useGeneralLeaderboardScript(
   };
 }
 
-function useFilter({ defaultRange }: { defaultRange?: DateRange }) {
+function useFilter({
+  defaultRange,
+  customTimeRange,
+}: {
+  defaultRange?: DateRange;
+  customTimeRange?: DateRange | null;
+}) {
   // default is 90d
   const [filterDay, setFilterDay] = useState<TFilterDays | null>(90);
 
@@ -71,8 +89,22 @@ function useFilter({ defaultRange }: { defaultRange?: DateRange }) {
   };
 
   useEffect(() => {
-    setDateRange(defaultRange ?? getDateRange(90));
-  }, [defaultRange]);
+    // Use customTimeRange if provided, otherwise fall back to defaultRange or 90 days
+    const rangeToUse = customTimeRange || defaultRange || getDateRange(90);
+    setDateRange(rangeToUse);
+
+    // Only reset filterDay if a custom timeRange is actually provided
+    if (customTimeRange && rangeToUse?.from && rangeToUse?.to) {
+      const offsetDay =
+        Math.abs(differenceInDays(rangeToUse.from, rangeToUse.to)) + 1;
+      if (FilterDays.includes(offsetDay as TFilterDays)) {
+        setFilterDay(offsetDay as TFilterDays);
+      } else {
+        setFilterDay(null);
+      }
+    }
+    // If no custom timeRange, keep the current filterDay (which defaults to 90)
+  }, [defaultRange, customTimeRange]);
 
   const onFilter = (filter: { name: string; value: any }) => {
     if (filter.name === "dateRange") {

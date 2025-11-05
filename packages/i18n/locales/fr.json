@@ -916,6 +916,7 @@
   "announcement.type.listing": "Cotation",
   "announcement.type.maintenance": "Maintenance",
   "announcement.type.delisting": "Retrait de cotation",
+  "announcement.type.campaign": "Campagne",
   "maintenance.dialog.title": "Mise à niveau du système en cours",
   "maintenance.dialog.description": "Désolé, {{brokerName}} est temporairement indisponible en raison d'une mise à niveau planifiée. Le service devrait être rétabli d'ici {{endDate}}.",
   "maintenance.tips.description": "{{brokerName}} sera temporairement indisponible pour une mise à niveau planifiée du {{startDate}} au {{endDate}}.",

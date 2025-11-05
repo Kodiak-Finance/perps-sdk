@@ -59,13 +59,18 @@ export const LeaderboardSection: FC<LeaderboardSectionProps> = (props) => {
     currentCampaign,
     backgroundSrc,
     campaignDateRange,
+    timeRange,
   } = useTradingLeaderboardContext();
 
   if (currentCampaignId === "general") {
     return (
       <Box px={3} className={cn("oui-mix-blend-screen")}>
         <Background backgroundSrc={backgroundSrc} />
-        <GeneralLeaderboardWidget {...props} className="oui-mt-10" />
+        <GeneralLeaderboardWidget
+          {...props}
+          className="oui-mt-10"
+          timeRange={timeRange}
+        />
       </Box>
     );
   }
@@ -81,6 +86,7 @@ export const LeaderboardSection: FC<LeaderboardSectionProps> = (props) => {
           {...props}
           className="oui-mt-10"
           campaignDateRange={campaignDateRange}
+          timeRange={timeRange}
           weekOneAddresses={
             currentCampaign?.leaderboard_config?.week_one_addresses
           }

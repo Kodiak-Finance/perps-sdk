@@ -916,6 +916,7 @@
   "announcement.type.listing": "Listing",
   "announcement.type.maintenance": "Wartung",
   "announcement.type.delisting": "Delisting",
+  "announcement.type.campaign": "Kampagne",
   "maintenance.dialog.title": "Systemaktualisierung läuft",
   "maintenance.dialog.description": "Entschuldigung, {{brokerName}} ist aufgrund einer geplanten Aktualisierung vorübergehend nicht verfügbar. Der Service soll bis {{endDate}} wieder verfügbar sein.",
   "maintenance.tips.description": "{{brokerName}} wird für eine geplante Aktualisierung von {{startDate}} bis {{endDate}} vorübergehend nicht verfügbar sein.",

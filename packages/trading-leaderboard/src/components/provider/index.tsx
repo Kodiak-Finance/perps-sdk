@@ -63,6 +63,11 @@ export type TradingLeaderboardState = {
     start_time: Date | string;
     end_time: Date | string;
   };
+  /** custom time range for leaderboard (supports 'now' for current date) */
+  timeRange?: {
+    from?: string | Date;
+    to?: string | Date | "now";
+  };
   statistics?: CampaignStatistics;
   setStatistics?: (statistics: CampaignStatistics) => void;
 };
@@ -76,7 +81,7 @@ export const TradingLeaderboardContext = createContext<TradingLeaderboardState>(
 
 export type TradingLeaderboardProviderProps = Pick<
   TradingLeaderboardState,
-  "campaigns" | "href" | "backgroundSrc" | "dataAdapter"
+  "campaigns" | "href" | "backgroundSrc" | "dataAdapter" | "timeRange"
 > & {
   campaignId?: string | number;
   onCampaignChange?: (campaignId: string | number) => void;
@@ -93,6 +98,7 @@ export const TradingLeaderboardProvider: React.FC<
     children,
     dataAdapter,
     onCampaignChange,
+    timeRange,
   } = props;
 
   const [userData, setUserData] = useState<UserData>();
@@ -206,6 +212,7 @@ export const TradingLeaderboardProvider: React.FC<
       setUpdatedTime: setUpdatedTime,
       dataAdapter: dataAdapter,
       campaignDateRange,
+      timeRange,
       statistics,
       setStatistics,
     };
@@ -220,6 +227,7 @@ export const TradingLeaderboardProvider: React.FC<
     dataAdapter,
     memoCampaignChange,
     campaignDateRange,
+    timeRange,
     statistics,
     setStatistics,
   ]);
