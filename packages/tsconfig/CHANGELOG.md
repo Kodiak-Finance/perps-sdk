@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.6
+
+### Patch Changes
+
+- 9cdd7a9: Added custom announcements system with Campaign type support and configurable leaderboard time ranges. Brokers can now pass custom announcements that merge with API
+
 ## 0.11.5
 
 ### Patch Changes
