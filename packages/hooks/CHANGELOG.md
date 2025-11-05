@@ -1,5 +1,20 @@
 # @orderly.network/hooks
 
+## 2.8.7
+
+### Patch Changes
+
+- 9cdd7a9: Added custom announcements system with Campaign type support and configurable leaderboard time ranges. Brokers can now pass custom announcements that merge with API
+- Updated dependencies [9cdd7a9]
+  - @kodiak-finance/orderly-types@2.8.7
+  - @kodiak-finance/orderly-core@2.8.7
+  - @kodiak-finance/orderly-default-evm-adapter@2.8.7
+  - @kodiak-finance/orderly-default-solana-adapter@2.8.7
+  - @kodiak-finance/orderly-net@2.8.7
+  - @kodiak-finance/orderly-perp@4.8.7
+  - @kodiak-finance/orderly-utils@2.8.7
+  - @kodiak-finance/orderly-web3-provider-ethers@2.8.7
+
 ## 2.8.6
 
 ### Patch Changes

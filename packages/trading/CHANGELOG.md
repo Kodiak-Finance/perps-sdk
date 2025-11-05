@@ -1,5 +1,30 @@
 # @orderly.network/trading
 
+## 2.8.7
+
+### Patch Changes
+
+- 9cdd7a9: Added custom announcements system with Campaign type support and configurable leaderboard time ranges. Brokers can now pass custom announcements that merge with API
+- Updated dependencies [9cdd7a9]
+  - @kodiak-finance/orderly-ui-connector@2.8.7
+  - @kodiak-finance/orderly-ui-positions@2.8.7
+  - @kodiak-finance/orderly-ui-scaffold@2.8.7
+  - @kodiak-finance/orderly-hooks@2.8.7
+  - @kodiak-finance/orderly-types@2.8.7
+  - @kodiak-finance/orderly-i18n@2.8.7
+  - @kodiak-finance/orderly-react-app@2.8.7
+  - @kodiak-finance/orderly-markets@2.8.7
+  - @kodiak-finance/orderly-portfolio@2.8.7
+  - @kodiak-finance/orderly-ui@2.8.7
+  - @kodiak-finance/orderly-ui-chain-selector@2.8.7
+  - @kodiak-finance/orderly-ui-leverage@2.8.7
+  - @kodiak-finance/orderly-ui-order-entry@2.8.7
+  - @kodiak-finance/orderly-ui-orders@2.8.7
+  - @kodiak-finance/orderly-ui-share@2.8.7
+  - @kodiak-finance/orderly-ui-tradingview@2.8.7
+  - @kodiak-finance/orderly-ui-transfer@2.8.7
+  - @kodiak-finance/orderly-utils@2.8.7
+
 ## 2.8.6
 
 ### Patch Changes
