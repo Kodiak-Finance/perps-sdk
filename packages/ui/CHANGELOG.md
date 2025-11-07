@@ -1,5 +1,13 @@
 # @orderly.network/ui
 
+## 2.8.9
+
+### Patch Changes
+
+- fc6ceec: Simplified leaderboard implementation by removing format detection logic as the unified endpoint now returns consistent field names. Improved code quality with pure
+- Updated dependencies [fc6ceec]
+  - @kodiak-finance/orderly-utils@2.8.9
+
 ## 2.8.8
 
 ### Patch Changes

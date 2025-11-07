@@ -1,5 +1,20 @@
 # @orderly.network/hooks
 
+## 2.8.9
+
+### Patch Changes
+
+- fc6ceec: Simplified leaderboard implementation by removing format detection logic as the unified endpoint now returns consistent field names. Improved code quality with pure
+- Updated dependencies [fc6ceec]
+  - @kodiak-finance/orderly-core@2.8.9
+  - @kodiak-finance/orderly-default-evm-adapter@2.8.9
+  - @kodiak-finance/orderly-default-solana-adapter@2.8.9
+  - @kodiak-finance/orderly-net@2.8.9
+  - @kodiak-finance/orderly-perp@4.8.9
+  - @kodiak-finance/orderly-types@2.8.9
+  - @kodiak-finance/orderly-utils@2.8.9
+  - @kodiak-finance/orderly-web3-provider-ethers@2.8.9
+
 ## 2.8.8
 
 ### Patch Changes

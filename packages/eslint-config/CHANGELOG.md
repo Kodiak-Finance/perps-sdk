@@ -1,5 +1,11 @@
 # @orderly.network/eslint-config
 
+## 2.8.9
+
+### Patch Changes
+
+- fc6ceec: Simplified leaderboard implementation by removing format detection logic as the unified endpoint now returns consistent field names. Improved code quality with pure
+
 ## 2.8.8
 
 ### Patch Changes
