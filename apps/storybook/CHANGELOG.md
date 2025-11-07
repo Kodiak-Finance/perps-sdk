@@ -1,5 +1,42 @@
 # storybook
 
+## 1.8.10
+
+### Patch Changes
+
+- 2ffbf03: Fixed an issue where your trading volume and P&L weren't showing on your leaderboard row. Your trading stats now display accurately so you can see your real performance.
+- Updated dependencies [2ffbf03]
+  - @kodiak-finance/orderly-trading-leaderboard@2.8.10
+  - @kodiak-finance/orderly-ui-connector@2.8.10
+  - @kodiak-finance/orderly-ui-positions@2.8.10
+  - @kodiak-finance/orderly-ui-scaffold@2.8.10
+  - @kodiak-finance/orderly-hooks@2.8.10
+  - @kodiak-finance/orderly-react-app@2.8.10
+  - @kodiak-finance/orderly-affiliate@2.8.10
+  - @kodiak-finance/orderly-chart@2.8.10
+  - @kodiak-finance/orderly-core@2.8.10
+  - @kodiak-finance/orderly-default-evm-adapter@2.8.10
+  - @kodiak-finance/orderly-default-solana-adapter@2.8.10
+  - @kodiak-finance/orderly-i18n@2.8.10
+  - @kodiak-finance/orderly-markets@2.8.10
+  - @kodiak-finance/orderly-portfolio@2.8.10
+  - @kodiak-finance/orderly-trading@2.8.10
+  - @kodiak-finance/orderly-trading-rewards@2.8.10
+  - @kodiak-finance/orderly-types@2.8.10
+  - @kodiak-finance/orderly-ui@2.8.10
+  - @kodiak-finance/orderly-ui-chain-selector@2.8.10
+  - @kodiak-finance/orderly-ui-leverage@2.8.10
+  - @kodiak-finance/orderly-ui-order-entry@2.8.10
+  - @kodiak-finance/orderly-ui-orders@2.8.10
+  - @kodiak-finance/orderly-ui-share@2.8.10
+  - @kodiak-finance/orderly-ui-tpsl@2.8.10
+  - @kodiak-finance/orderly-ui-tradingview@2.8.10
+  - @kodiak-finance/orderly-ui-transfer@2.8.10
+  - @kodiak-finance/orderly-utils@2.8.10
+  - @kodiak-finance/orderly-vaults@2.8.10
+  - @kodiak-finance/orderly-wallet-connector@2.8.10
+  - @kodiak-finance/orderly-wallet-connector-privy@2.8.10
+
 ## 1.8.9
 
 ### Patch Changes
