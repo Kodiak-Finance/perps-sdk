@@ -2,7 +2,7 @@
  * SDK Version - BUMP THIS WHEN RELEASING
  * Keep in sync with root package.json version
  */
-export const SDK_VERSION = "2.8.8";
+export const SDK_VERSION = "2.8.9";
 
 export type ChangesetEntry = {
   date: string;
@@ -20,6 +20,21 @@ export type Changesets = Record<string, ChangesetEntry>;
  * ADD NEW ENTRIES WHEN BUMPING SDK_VERSION
  */
 export const CHANGESETS: Changesets = {
+  "2.8.9": {
+    date: "2025-11-07",
+    title: "Leaderboard endpoint simplification and code optimization",
+    summary:
+      "Simplified leaderboard implementation by removing format detection logic as the unified endpoint now returns consistent field names. Improved code quality with pure functions and optimized dependency arrays.",
+    highlights: [
+      "Removed API format detection complexity - unified endpoint consistently returns perp_volume, realized_pnl, and points",
+      "Simplified normalizeRankingData to pure function with direct field mapping",
+      "Cleaned up type definitions - removed unused optional total_* fields",
+      "Optimized React hook dependencies - eliminated unnecessary memoization",
+      "Improved code readability and maintainability without changing functionality",
+    ],
+    packages: ["kodiak-orderly-trading-leaderboard"],
+    type: "improvement",
+  },
   "2.8.8": {
     date: "2025-11-07",
     title: "Unified leaderboard endpoint and points sorting",

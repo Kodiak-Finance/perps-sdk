@@ -18,16 +18,13 @@ import { getCurrentAddressRowKey, isSameAddress } from "../shared/util";
 
 /**
  * Normalize API field names to UI field names
- * Handles both old format (perp_volume, realized_pnl) and new format (total_perp_volume, total_pnl)
+ * Maps perp_volume → volume and realized_pnl → pnl
  */
-const normalizeRankingData = (
-  items: GeneralRankingData[],
-  isNewFormat: boolean,
-) =>
+const normalizeRankingData = (items: GeneralRankingData[]) =>
   items.map((item) => ({
     ...item,
-    volume: isNewFormat ? item.total_perp_volume : item.perp_volume,
-    pnl: isNewFormat ? item.total_pnl : item.realized_pnl,
+    volume: item.perp_volume,
+    pnl: item.realized_pnl,
   }));
 
 export type GeneralRankingData = {
@@ -37,13 +34,9 @@ export type GeneralRankingData = {
   date: string;
   perp_maker_volume: number;
   perp_taker_volume: number;
-  perp_volume?: number;
-  realized_pnl?: number;
+  perp_volume: number;
+  realized_pnl: number;
   total_fee: number;
-  total_perp_volume?: number;
-  total_maker_volume?: number;
-  total_taker_volume?: number;
-  total_pnl?: number;
 
   key?: string;
   rank?: number | string;
@@ -233,11 +226,6 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     }));
   }, [state.address, userDataRes, isLoading, getAddressRank]);
 
-  const isNewFormat = useMemo(() => {
-    const firstItem = data?.rows?.[0];
-    return firstItem?.total_perp_volume !== undefined;
-  }, [data]);
-
   const addRankForList = useCallback(
     (list: GeneralRankingData[], total: number) => {
       return list?.map((item, index) => {
@@ -283,7 +271,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
       total = list.length;
     }
     const rankList = addRankForList(list, total);
-    const normalized = normalizeRankingData(rankList, isNewFormat);
+    const normalized = normalizeRankingData(rankList);
 
     if (page === 1 && !searchValue) {
       return [...userDataList, ...normalized];
@@ -298,7 +286,6 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     addRankForList,
     campaignRankingList,
     filteredCampaignData,
-    isNewFormat,
   ]);
 
   const dataList = useMemo(() => {
@@ -320,7 +307,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
       }
     }
     const rankList = addRankForList(flatList, total);
-    const normalized = normalizeRankingData(rankList, isNewFormat);
+    const normalized = normalizeRankingData(rankList);
 
     if (!searchValue) {
       return [...userDataList, ...normalized];
@@ -333,7 +320,6 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     addRankForList,
     campaignRankingList,
     filteredCampaignData,
-    isNewFormat,
   ]);
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -365,8 +351,8 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
   const onSort = useCallback(
     (sort?: TableSort) => {
       if (sort) {
-        // Fallback points sort to volume if old API format doesn't support points
-        if (sort.sortKey === "points" && !isNewFormat) {
+        // Fallback points sort to volume if using default Orderly endpoint (doesn't support points)
+        if (sort.sortKey === "points" && !leaderboardEndpoint) {
           sort.sortKey = "perp_volume";
         } else if (sort.sortKey === "volume") {
           // Map column field names to query field names
@@ -384,7 +370,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
           : initialSort;
       });
     },
-    [initialSort, isMobile, isNewFormat],
+    [initialSort, isMobile, leaderboardEndpoint],
   );
 
   useEffect(() => {
