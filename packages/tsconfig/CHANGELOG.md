@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.7
+
+### Patch Changes
+
+- be147fa: Refactor leaderboard to use unified endpoint with automatic API format detection
+
 ## 0.11.6
 
 ### Patch Changes

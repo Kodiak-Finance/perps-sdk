@@ -1,5 +1,14 @@
 # @orderly.network/futures
 
+## 4.8.8
+
+### Patch Changes
+
+- be147fa: Refactor leaderboard to use unified endpoint with automatic API format detection
+- Updated dependencies [be147fa]
+  - @kodiak-finance/orderly-types@2.8.8
+  - @kodiak-finance/orderly-utils@2.8.8
+
 ## 4.8.7
 
 ### Patch Changes
