@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.8
+
+### Patch Changes
+
+- fc6ceec: Simplified leaderboard implementation by removing format detection logic as the unified endpoint now returns consistent field names. Improved code quality with pure
+
 ## 0.11.7
 
 ### Patch Changes
