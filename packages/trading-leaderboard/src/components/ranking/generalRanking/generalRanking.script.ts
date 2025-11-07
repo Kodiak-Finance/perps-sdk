@@ -219,11 +219,13 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
       ];
     }
 
-    return userDataRes?.map((item) => ({
+    const withRank = userDataRes?.map((item) => ({
       ...item,
       rank: getAddressRank(item.address!),
       key: getCurrentAddressRowKey(item.address!),
     }));
+
+    return normalizeRankingData(withRank);
   }, [state.address, userDataRes, isLoading, getAddressRank]);
 
   const addRankForList = useCallback(
