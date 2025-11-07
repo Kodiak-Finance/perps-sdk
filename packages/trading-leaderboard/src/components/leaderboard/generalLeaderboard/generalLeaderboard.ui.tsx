@@ -14,7 +14,7 @@ export type GeneralLeaderboardProps = {
     start_time: Date | string;
     end_time: Date | string;
   };
-  pointsEndpoint?: string;
+  leaderboardEndpoint?: string;
   timeRange?: {
     from?: string | Date;
     to?: string | Date | "now";
@@ -41,11 +41,11 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
       "volume",
       "pnl",
     ];
-    if (props.pointsEndpoint) {
+    if (props.leaderboardEndpoint) {
       baseFields.push("points");
     }
     return baseFields;
-  }, [isMobile, props.activeTab, props.pointsEndpoint]);
+  }, [isMobile, props.activeTab, props.leaderboardEndpoint]);
 
   if (isMobile) {
     return (
@@ -67,7 +67,7 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
           className="oui-pt-0"
           activeTab={props.activeTab}
           onTabChange={props.onTabChange}
-          pointsEndpoint={props.pointsEndpoint}
+          leaderboardEndpoint={props.leaderboardEndpoint}
         />
 
         <GeneralRankingWidget
@@ -79,7 +79,7 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
               : "realized_pnl"
           }
           fields={fields}
-          pointsEndpoint={props.pointsEndpoint}
+          leaderboardEndpoint={props.leaderboardEndpoint}
         />
       </Box>
     );
@@ -105,7 +105,7 @@ export const GeneralLeaderboard: FC<GeneralLeaderboardProps> = (props) => {
         dateRange={props.dateRange}
         address={props.searchValue}
         fields={fields}
-        pointsEndpoint={props.pointsEndpoint}
+        leaderboardEndpoint={props.leaderboardEndpoint}
       />
     </Box>
   );

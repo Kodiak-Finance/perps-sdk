@@ -10,7 +10,7 @@ type LeaderboardTabsProps = {
   className?: string;
   activeTab: LeaderboardTab;
   onTabChange: (tab: LeaderboardTab) => void;
-  pointsEndpoint?: string;
+  leaderboardEndpoint?: string;
 };
 
 export const LeaderboardTabs: FC<LeaderboardTabsProps> = (props) => {
@@ -33,14 +33,19 @@ export const LeaderboardTabs: FC<LeaderboardTabsProps> = (props) => {
     const showPnl = isMobileGeneral
       ? true
       : metrics?.includes(LeaderboardTab.Pnl);
-    const showPoints = !!props.pointsEndpoint;
+    const showPoints = !!props.leaderboardEndpoint;
 
     return {
       showVolume,
       showPnl,
       showPoints,
     };
-  }, [currentCampaign, props.activeTab, props.isMobile, props.pointsEndpoint]);
+  }, [
+    currentCampaign,
+    props.activeTab,
+    props.isMobile,
+    props.leaderboardEndpoint,
+  ]);
 
   useEffect(() => {
     // set default tab

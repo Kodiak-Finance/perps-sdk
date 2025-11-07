@@ -2,7 +2,7 @@
  * SDK Version - BUMP THIS WHEN RELEASING
  * Keep in sync with root package.json version
  */
-export const SDK_VERSION = "2.8.7";
+export const SDK_VERSION = "2.8.8";
 
 export type ChangesetEntry = {
   date: string;
@@ -20,6 +20,22 @@ export type Changesets = Record<string, ChangesetEntry>;
  * ADD NEW ENTRIES WHEN BUMPING SDK_VERSION
  */
 export const CHANGESETS: Changesets = {
+  "2.8.8": {
+    date: "2025-11-07",
+    title: "Unified leaderboard endpoint and points sorting",
+    summary:
+      "Refactored leaderboard to use a single unified endpoint that returns both volume/pnl and points data. Supports both new unified format and fallback to legacy Orderly API with automatic field mapping.",
+    highlights: [
+      "New unified leaderboard endpoint support (single API call for all metrics)",
+      "Automatic format detection for old (perp_volume, realized_pnl) and new (total_perp_volume, total_pnl) API formats",
+      "Points sorting with graceful fallback to volume sort on unsupported APIs",
+      "Conditional query parameters - only sends aggregateBy/broker_id for default Orderly endpoint",
+      "Clean separation between query layer and response normalization",
+      "Removed dual API fetching complexity",
+    ],
+    packages: ["kodiak-orderly-trading-leaderboard"],
+    type: "feature",
+  },
   "2.8.7": {
     date: "2025-11-05",
     title: "Custom announcements and leaderboard timeRange features",

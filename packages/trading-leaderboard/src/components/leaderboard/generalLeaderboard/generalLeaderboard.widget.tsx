@@ -7,7 +7,11 @@ import {
 
 export type GeneralLeaderboardWidgetProps = Pick<
   GeneralLeaderboardProps,
-  "style" | "className" | "campaignDateRange" | "pointsEndpoint" | "timeRange"
+  | "style"
+  | "className"
+  | "campaignDateRange"
+  | "leaderboardEndpoint"
+  | "timeRange"
 >;
 
 export const GeneralLeaderboardWidget: FC<GeneralLeaderboardWidgetProps> = (
@@ -23,7 +27,7 @@ export const GeneralLeaderboardWidget: FC<GeneralLeaderboardWidgetProps> = (
       {...state}
       className={props.className}
       style={props.style}
-      pointsEndpoint={props.pointsEndpoint}
+      leaderboardEndpoint={props.leaderboardEndpoint}
       timeRange={props.timeRange}
     />
   );

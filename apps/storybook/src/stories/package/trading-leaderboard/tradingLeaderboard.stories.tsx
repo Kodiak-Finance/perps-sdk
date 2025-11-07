@@ -505,20 +505,22 @@ export const CampaignRanking: Story = {
 
 export const GeneralLeaderboard: Story = {
   argTypes: {
-    pointsEndpoint: {
+    leaderboardEndpoint: {
       control: "text",
       description:
-        "Optional API endpoint for points data. Leave empty to disable Points tab.",
+        "Optional API endpoint for unified leaderboard with points data. Leave empty to disable Points tab.",
     },
   },
   args: {
-    pointsEndpoint: "https://staging.backend.kodiak.finance/orderly/points",
+    leaderboardEndpoint: "",
   },
   render: (args: any) => {
     return (
       <Box p={3}>
         <TradingLeaderboardProvider>
-          <GeneralLeaderboardWidget pointsEndpoint={args.pointsEndpoint} />
+          <GeneralLeaderboardWidget
+            leaderboardEndpoint={args.leaderboardEndpoint}
+          />
         </TradingLeaderboardProvider>
       </Box>
     );
@@ -527,10 +529,10 @@ export const GeneralLeaderboard: Story = {
 
 export const GeneralLeaderboardWithCustomTimeRange: Story = {
   argTypes: {
-    pointsEndpoint: {
+    leaderboardEndpoint: {
       control: "text",
       description:
-        "Optional API endpoint for points data. Leave empty to disable Points tab.",
+        "Optional API endpoint for unified leaderboard with points data. Leave empty to disable Points tab.",
     },
     fromDate: {
       control: "text",
@@ -542,7 +544,7 @@ export const GeneralLeaderboardWithCustomTimeRange: Story = {
     },
   } as any,
   args: {
-    pointsEndpoint: "https://staging.backend.kodiak.finance/orderly/points",
+    leaderboardEndpoint: "",
     fromDate: "2025-11-01",
     toDate: "",
   } as any,
@@ -559,7 +561,7 @@ export const GeneralLeaderboardWithCustomTimeRange: Story = {
       <Box p={3}>
         <TradingLeaderboardProvider timeRange={timeRange}>
           <GeneralLeaderboardWidget
-            pointsEndpoint={args.pointsEndpoint}
+            leaderboardEndpoint={args.leaderboardEndpoint}
             timeRange={timeRange}
           />
         </TradingLeaderboardProvider>
@@ -570,10 +572,10 @@ export const GeneralLeaderboardWithCustomTimeRange: Story = {
 
 export const GeneralLeaderboardWith15DayCompetition: Story = {
   argTypes: {
-    pointsEndpoint: {
+    leaderboardEndpoint: {
       control: "text",
       description:
-        "Optional API endpoint for points data. Leave empty to disable Points tab.",
+        "Optional API endpoint for unified leaderboard with points data. Leave empty to disable Points tab.",
     },
     fromDate: {
       control: "text",
@@ -586,7 +588,7 @@ export const GeneralLeaderboardWith15DayCompetition: Story = {
     },
   } as any,
   args: {
-    pointsEndpoint: "https://staging.backend.kodiak.finance/orderly/points",
+    leaderboardEndpoint: "",
     fromDate: "2025-11-01",
     toDate: "now",
   } as any,
@@ -600,7 +602,7 @@ export const GeneralLeaderboardWith15DayCompetition: Story = {
       <Box p={3}>
         <TradingLeaderboardProvider timeRange={timeRange}>
           <GeneralLeaderboardWidget
-            pointsEndpoint={args.pointsEndpoint}
+            leaderboardEndpoint={args.leaderboardEndpoint}
             timeRange={timeRange}
           />
         </TradingLeaderboardProvider>

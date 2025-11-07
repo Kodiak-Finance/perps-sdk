@@ -8,6 +8,7 @@ import {
   cn,
   toast,
   Spinner,
+  Tooltip,
 } from "@kodiak-finance/orderly-ui";
 import firstBadge from "../../../img/first_badge.png";
 import secondBadge from "../../../img/second_badge.png";
@@ -180,8 +181,13 @@ export const useRankingColumns = (
         width: 90,
       },
       {
-        title: t("common.points"),
+        title: (
+          <Tooltip content="All-time points">
+            <span>{t("common.points")}</span>
+          </Tooltip>
+        ),
         dataIndex: "points",
+        onSort: enableSort,
         align: isMobile ? "right" : "left",
         render: (value: number) => {
           if (isPointsLoading) {

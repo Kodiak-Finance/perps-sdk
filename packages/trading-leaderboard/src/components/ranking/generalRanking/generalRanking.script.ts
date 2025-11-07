@@ -12,10 +12,23 @@ import {
   useScreen,
 } from "@kodiak-finance/orderly-ui";
 import { useEndReached } from "../../../hooks/useEndReached";
-import { usePointsData } from "../../../hooks/usePointsData";
 import { DateRange } from "../../../type";
 import { formatDateRange, getDateRange } from "../../../utils";
 import { getCurrentAddressRowKey, isSameAddress } from "../shared/util";
+
+/**
+ * Normalize API field names to UI field names
+ * Handles both old format (perp_volume, realized_pnl) and new format (total_perp_volume, total_pnl)
+ */
+const normalizeRankingData = (
+  items: GeneralRankingData[],
+  isNewFormat: boolean,
+) =>
+  items.map((item) => ({
+    ...item,
+    volume: isNewFormat ? item.total_perp_volume : item.perp_volume,
+    pnl: isNewFormat ? item.total_pnl : item.realized_pnl,
+  }));
 
 export type GeneralRankingData = {
   account_id: string;
@@ -24,9 +37,13 @@ export type GeneralRankingData = {
   date: string;
   perp_maker_volume: number;
   perp_taker_volume: number;
-  perp_volume: number;
-  realized_pnl: number;
+  perp_volume?: number;
+  realized_pnl?: number;
   total_fee: number;
+  total_perp_volume?: number;
+  total_maker_volume?: number;
+  total_taker_volume?: number;
+  total_pnl?: number;
 
   key?: string;
   rank?: number | string;
@@ -47,7 +64,7 @@ export type GeneralRankingScriptOptions = {
   dateRange?: DateRange | null;
   address?: string;
   sortKey?: "perp_volume" | "realized_pnl";
-  pointsEndpoint?: string;
+  leaderboardEndpoint?: string;
 };
 
 export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
@@ -55,7 +72,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     dateRange = getDateRange(90),
     address: searchValue,
     sortKey = "perp_volume",
-    pointsEndpoint,
+    leaderboardEndpoint,
   } = options || {};
 
   const [initialSort] = useState<TableSort>({
@@ -80,23 +97,6 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     searchValue,
   });
 
-  const { rows: pointsRows, isLoading: isPointsLoading } = usePointsData(
-    pointsEndpoint ? dateRange : null,
-    pointsEndpoint,
-  );
-
-  /**
-   * Build points lookup map for O(1) address lookups.
-   * Keys are lowercased addresses for consistent lookups.
-   */
-  const pointsMap = useMemo(() => {
-    const map = new Map<string, number>();
-    pointsRows.forEach((item) => {
-      map.set(item.address, item.points);
-    });
-    return map;
-  }, [pointsRows]);
-
   const getUrl = (args: {
     page: number;
     pageSize: number;
@@ -111,10 +111,14 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
       // if page is 1, we need to set page size to 100 to get the top 100 data to judge user rank
       args.page === 1 ? "100" : args.pageSize.toString(),
     );
-    searchParams.set("aggregateBy", "address_per_builder");
 
-    if (brokerId) {
-      searchParams.set("broker_id", brokerId);
+    // Only add aggregateBy and broker_id for default Orderly endpoint
+    const isDefaultEndpoint = !leaderboardEndpoint;
+    if (isDefaultEndpoint) {
+      searchParams.set("aggregateBy", "address_per_builder");
+      if (brokerId) {
+        searchParams.set("broker_id", brokerId);
+      }
     }
 
     if (args.sort) {
@@ -136,8 +140,9 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
       searchParams.set("address", args.address);
     }
 
-    // https://orderly.network/docs/build-on-omnichain/evm-api/restful-api/private/get-builders-leaderboard
-    return `/v1/broker/leaderboard/daily?${searchParams.toString()}`;
+    // Use custom leaderboard endpoint if provided, otherwise use default Orderly endpoint
+    const baseUrl = leaderboardEndpoint || `/v1/broker/leaderboard/daily`;
+    return `${baseUrl}?${searchParams.toString()}`;
   };
 
   const { data, isLoading } = useQuery<GeneralRankingResponse>(
@@ -228,6 +233,11 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     }));
   }, [state.address, userDataRes, isLoading, getAddressRank]);
 
+  const isNewFormat = useMemo(() => {
+    const firstItem = data?.rows?.[0];
+    return firstItem?.total_perp_volume !== undefined;
+  }, [data]);
+
   const addRankForList = useCallback(
     (list: GeneralRankingData[], total: number) => {
       return list?.map((item, index) => {
@@ -273,11 +283,12 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
       total = list.length;
     }
     const rankList = addRankForList(list, total);
+    const normalized = normalizeRankingData(rankList, isNewFormat);
 
     if (page === 1 && !searchValue) {
-      return mergePointsData([...userDataList, ...rankList], pointsMap);
+      return [...userDataList, ...normalized];
     }
-    return mergePointsData(rankList, pointsMap);
+    return normalized;
   }, [
     data,
     page,
@@ -287,7 +298,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     addRankForList,
     campaignRankingList,
     filteredCampaignData,
-    pointsMap,
+    isNewFormat,
   ]);
 
   const dataList = useMemo(() => {
@@ -309,11 +320,12 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
       }
     }
     const rankList = addRankForList(flatList, total);
+    const normalized = normalizeRankingData(rankList, isNewFormat);
 
     if (!searchValue) {
-      return mergePointsData([...userDataList, ...rankList], pointsMap);
+      return [...userDataList, ...normalized];
     }
-    return mergePointsData(rankList, pointsMap);
+    return normalized;
   }, [
     infiniteData,
     userDataList,
@@ -321,7 +333,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     addRankForList,
     campaignRankingList,
     filteredCampaignData,
-    pointsMap,
+    isNewFormat,
   ]);
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -352,12 +364,18 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
 
   const onSort = useCallback(
     (sort?: TableSort) => {
-      // befause table column dataIndex is not the same as the api sort, so we need to map the sortKey
-      if (sort?.sortKey === "volume") {
-        sort.sortKey = "perp_volume";
-      } else if (sort?.sortKey === "pnl") {
-        sort.sortKey = "realized_pnl";
+      if (sort) {
+        // Fallback points sort to volume if old API format doesn't support points
+        if (sort.sortKey === "points" && !isNewFormat) {
+          sort.sortKey = "perp_volume";
+        } else if (sort.sortKey === "volume") {
+          // Map column field names to query field names
+          sort.sortKey = "perp_volume";
+        } else if (sort.sortKey === "pnl") {
+          sort.sortKey = "realized_pnl";
+        }
       }
+
       // fix for mobile sort
       setSort((_sort) => {
         if (sort) return sort;
@@ -366,7 +384,7 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
           : initialSort;
       });
     },
-    [initialSort, isMobile],
+    [initialSort, isMobile, isNewFormat],
   );
 
   useEffect(() => {
@@ -395,27 +413,11 @@ export function useGeneralRankingScript(options?: GeneralRankingScriptOptions) {
     onSort,
     dataSource,
     isLoading: isLoading || isValidating,
-    isPointsLoading,
     isMobile,
     sentinelRef,
     dataList,
     address: state.address,
   };
-}
-
-function mergePointsData(data: any[], pointsMap: Map<string, number>) {
-  return data.map((item) => {
-    const address = item.address?.toLowerCase();
-    const rawPoints = pointsMap.get(address) ?? 0;
-    // Format points to max 3 decimal places
-    const points = parseFloat(rawPoints.toFixed(3));
-    return {
-      ...item,
-      volume: item.perp_volume,
-      pnl: item.realized_pnl,
-      points,
-    };
-  });
 }
 
 // for 128 campaign hardcode

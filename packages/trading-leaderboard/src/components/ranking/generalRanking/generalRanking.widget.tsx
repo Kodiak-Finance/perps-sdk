@@ -12,13 +12,13 @@ export type GeneralRankingWidgetProps = Pick<
   GeneralRankingScriptOptions;
 
 export const GeneralRankingWidget: FC<GeneralRankingWidgetProps> = (props) => {
-  const { dateRange, address, fields, sortKey, pointsEndpoint, ...rest } =
+  const { dateRange, address, fields, sortKey, leaderboardEndpoint, ...rest } =
     props;
   const state = useGeneralRankingScript({
     dateRange,
     address,
     sortKey,
-    pointsEndpoint,
+    leaderboardEndpoint,
   });
 
   return <Ranking {...state} {...rest} fields={fields} />;
