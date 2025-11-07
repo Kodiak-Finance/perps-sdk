@@ -1,5 +1,14 @@
 # @orderly.network/web3-provider-ethers
 
+## 2.8.8
+
+### Patch Changes
+
+- be147fa: Refactor leaderboard to use unified endpoint with automatic API format detection
+- Updated dependencies [be147fa]
+  - @kodiak-finance/orderly-default-evm-adapter@2.8.8
+  - @kodiak-finance/orderly-types@2.8.8
+
 ## 2.8.7
 
 ### Patch Changes

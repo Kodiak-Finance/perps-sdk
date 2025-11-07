@@ -1,5 +1,17 @@
 # @orderly.network/react-app
 
+## 2.8.8
+
+### Patch Changes
+
+- be147fa: Refactor leaderboard to use unified endpoint with automatic API format detection
+- Updated dependencies [be147fa]
+  - @kodiak-finance/orderly-hooks@2.8.8
+  - @kodiak-finance/orderly-i18n@2.8.8
+  - @kodiak-finance/orderly-types@2.8.8
+  - @kodiak-finance/orderly-ui@2.8.8
+  - @kodiak-finance/orderly-utils@2.8.8
+
 ## 2.8.7
 
 ### Patch Changes
