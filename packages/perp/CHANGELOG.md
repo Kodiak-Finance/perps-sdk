@@ -1,5 +1,14 @@
 # @orderly.network/futures
 
+## 4.8.10
+
+### Patch Changes
+
+- 2ffbf03: Fixed an issue where your trading volume and P&L weren't showing on your leaderboard row. Your trading stats now display accurately so you can see your real performance.
+- Updated dependencies [2ffbf03]
+  - @kodiak-finance/orderly-types@2.8.10
+  - @kodiak-finance/orderly-utils@2.8.10
+
 ## 4.8.9
 
 ### Patch Changes

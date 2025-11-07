@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.11.9
+
+### Patch Changes
+
+- 2ffbf03: Fixed an issue where your trading volume and P&L weren't showing on your leaderboard row. Your trading stats now display accurately so you can see your real performance.
+
 ## 0.11.8
 
 ### Patch Changes
