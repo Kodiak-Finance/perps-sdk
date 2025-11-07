@@ -1,6 +1,6 @@
 {
   "name": "@kodiak-finance/orderly-perp",
-  "version": "4.8.8",
+  "version": "4.8.9",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
