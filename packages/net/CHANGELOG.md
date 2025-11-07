@@ -1,5 +1,11 @@
 # @orderly.network/net
 
+## 2.8.8
+
+### Patch Changes
+
+- be147fa: Refactor leaderboard to use unified endpoint with automatic API format detection
+
 ## 2.8.7
 
 ### Patch Changes
