@@ -91,6 +91,11 @@ export {
 export { useMaxLeverage } from "./useMaxLeverage";
 export { useSymbolLeverage } from "./useSymbolLeverage";
 export { useLeverageBySymbol } from "./useLeverageBySymbol";
+export {
+  useEffectiveLeverage,
+  type UseEffectiveLeverageInputs,
+  type EffectiveLeverageResult,
+} from "./useEffectiveLeverage";
 
 export { useAssetsHistory } from "./statistics/useAssetHistory";
 

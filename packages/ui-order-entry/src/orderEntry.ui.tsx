@@ -38,6 +38,7 @@ import { AssetInfo } from "./components/assetInfo";
 import { Available } from "./components/available";
 import { orderConfirmDialogId } from "./components/dialog/confirm.ui";
 import { scaledOrderConfirmDialogId } from "./components/dialog/scaledOrderConfirm";
+import { EffectiveLeverageInfo } from "./components/effectiveLeverageInfo";
 import { OrderEntryHeader } from "./components/header";
 import { OrderEntryProvider } from "./components/orderEntryProvider";
 import { OrderInput } from "./components/orderInput";
@@ -360,6 +361,11 @@ export const OrderEntry: React.FC<OrderEntryProps> = (props) => {
           order_type={formattedOrder.order_type!}
           setOrderValue={setOrderValue}
           symbolLeverage={props.symbolLeverage}
+        />
+
+        <EffectiveLeverageInfo
+          result={props.effectiveLeverageResult}
+          hasOrderQty={!!formattedOrder.order_quantity}
         />
 
         <Available

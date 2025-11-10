@@ -8,6 +8,7 @@ import {
   useOrderEntry,
   useOrderlyContext,
   useLeverageBySymbol,
+  useEffectiveLeverage,
 } from "@kodiak-finance/orderly-hooks";
 import {
   DistributionType,
@@ -45,7 +46,6 @@ export const useOrderEntryScript = (inputs: OrderEntryScriptInputs) => {
   );
 
   const symbolLeverage = useLeverageBySymbol(symbol);
-
   const { notification } = useOrderlyContext();
 
   const [soundAlert, setSoundAlert] = useLocalStorage<boolean>(
@@ -68,6 +68,17 @@ export const useOrderEntryScript = (inputs: OrderEntryScriptInputs) => {
       position_type: PositionType.PARTIAL,
       side: localOrderSide,
     },
+  });
+
+  const effectiveLeverageResult = useEffectiveLeverage({
+    symbol,
+    orderQty: formattedOrder?.order_quantity
+      ? Number(formattedOrder.order_quantity)
+      : undefined,
+    orderPrice: formattedOrder?.order_price
+      ? Number(formattedOrder.order_price)
+      : undefined,
+    selectedLeverage: symbolLeverage,
   });
 
   const [tpslSwitch, setTpslSwitch] = useLocalStorage(
@@ -387,5 +398,6 @@ export const useOrderEntryScript = (inputs: OrderEntryScriptInputs) => {
     setSoundAlert,
     currentFocusInput,
     symbolLeverage,
+    effectiveLeverageResult,
   };
 };
