@@ -9,6 +9,7 @@ import {
   useOrderlyContext,
   useLeverageBySymbol,
   useEffectiveLeverage,
+  usePositionStream,
 } from "@kodiak-finance/orderly-hooks";
 import {
   DistributionType,
@@ -70,8 +71,18 @@ export const useOrderEntryScript = (inputs: OrderEntryScriptInputs) => {
     },
   });
 
+  const [positionData] = usePositionStream(symbol);
+  const currentPosition = positionData?.rows?.[0];
+  const currentPositionQty = currentPosition?.position_qty
+    ? Number(currentPosition.position_qty)
+    : 0;
+
   const effectiveLeverageResult = useEffectiveLeverage({
     symbol,
+    positionQty: currentPositionQty,
+    positionPrice: currentPosition?.mark_price
+      ? Number(currentPosition.mark_price)
+      : undefined,
     orderQty: formattedOrder?.order_quantity
       ? Number(formattedOrder.order_quantity)
       : undefined,
